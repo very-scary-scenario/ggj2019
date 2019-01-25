@@ -1,0 +1,63 @@
+Generate dialogue like this: "A" "B" and "B". "C" "D". 
+
+A (Speech starter)
+I want a house that has
+I would like a house that has
+The house I want needs to have
+Hey. I want me a house that has
+Give me a home that has
+My dream home needs 
+
+
+B (Essentials)
+(1-3) toilets
+(1-5) bedrooms
+(1-3) floors
+(1-10) windows
+(1-4) storage closets
+a small/average/large garden
+a study
+a basement
+
+
+C (Last speech)
+Also, I wouldn't mind if it had a
+I'd also quite like if it had a
+Plus, I want a
+Cool, and a
+Oh, and a 
+And how about a
+And it also needs to have a
+
+D (Non-essentials)
+bath
+bed
+bridge
+bunk-bed
+cat
+dog
+dungeon
+fence
+fridge
+flowerbed
+garage
+gate
+oven
+pavement
+pond
+post box
+radiator
+river
+rug
+shed
+shower
+sofa
+swimming pool
+table
+television
+tree
+tree swing
+treehouse
+
+
+
