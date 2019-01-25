@@ -5,3 +5,7 @@ html {
 #bid-button {
   font-size: 1.5em;
 }
+
+#participants .winning {
+  font-weight: bold;
+}
