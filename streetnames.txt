@@ -17,6 +17,7 @@ Dare|Daring
 Diamond
 Double
 Dream|Dreamy
+Electric
 Energetic|Energy
 Fairy
 Fancy
@@ -82,9 +83,19 @@ B
 
 Alley
 Avenue
+Bank
 Boulevard
+Close
 Corner
+Crescent
 Cul-de-sac
+Drive
+Gardens
+Grove
+Hill
 Lane
+Rise
 Road
 Street
+View
+Walk
