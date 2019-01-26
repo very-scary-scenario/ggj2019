@@ -25,15 +25,24 @@ def build_parts():
         place_names = [pn.strip() for pn in pnf.readlines() if pn.strip()]
 
     sprites = []
-
     for sprite in os.listdir('sprites'):
         prefix = os.path.splitext(sprite)[0]
         (name, *tags) = prefix.split('-')
         sprites.append({
-            'fn': sprite,
             'prefix': prefix,
             'name': name,
             'tags': tags,
+            'path': os.path.join('sprites', sprite),
+        })
+
+    steps = []
+    for step in os.listdir(os.path.join('floorplan', 'symbols')):
+        prefix = os.path.splitext(step)[0]
+        if not prefix.startswith('stairs_'):
+            continue
+        steps.append({
+            'prefix': prefix,
+            'path': os.path.join('floorplan', 'symbols', step),
         })
 
     with open('parts.js', 'w') as pf:
@@ -41,12 +50,14 @@ def build_parts():
             var STREET_NAMES_A = {};
             var STREET_NAMES_B = {};
             var PLACE_NAMES = {};
-            var SPRITES = {};
+            var FURNITURE_SPRITES = {};
+            var STEP_SPRITES = {};
         """.format(
             json.dumps(street_names_a),
             json.dumps(street_names_b),
             json.dumps(place_names),
             json.dumps(sprites),
+            json.dumps(steps),
         ))
 
 

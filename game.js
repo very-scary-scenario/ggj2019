@@ -5,7 +5,7 @@ var AUDIENCE_STEP_LENGTH = 1000;
 var ROOM_WALL_WIDTH = 20;
 var ROOM_WALL_LENGTH = 320;
 var DOOR_SIZE = ROOM_WALL_LENGTH/4;
-var STEPS_SIZE = ROOM_WALL_LENGTH/2;
+var STEPS_SIZE = ROOM_WALL_LENGTH*0.8;
 var SPRITE_SIZE = 128;
 
 var ROOMS = [
@@ -108,7 +108,8 @@ Lot.prototype.draw = function() {
       // should there be steps here?
       if (Math.random() < (1/18)) {
         var margin = Math.floor(0.5 * (ROOM_WALL_LENGTH - STEPS_SIZE));
-        ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + margin, locForCoordinate(y) + margin, STEPS_SIZE, STEPS_SIZE);
+        var step = choice(STEP_SPRITES);
+        ctx.drawImage(document.getElementById('sprite-' + step.prefix), locForCoordinate(x) + margin, locForCoordinate(y) + margin, STEPS_SIZE, STEPS_SIZE);
         continue;
       }
 
@@ -118,7 +119,7 @@ Lot.prototype.draw = function() {
 
       while (Math.random() < itemNeed) {
         itemNeed = itemNeed/2;
-        sprite = choice(SPRITES);
+        sprite = choice(FURNITURE_SPRITES);
         var spriteX = locForCoordinate(x);
         var spriteY = locForCoordinate(y);
 
@@ -329,10 +330,11 @@ function makeAudienceGesticulate() {
 function doLoop() {
   // pre-cache stuff
   var sprite;
-  for (var si = 0; si < SPRITES.length; si++) {
+  var cacheableImages = FURNITURE_SPRITES.concat(STEP_SPRITES);
+  for (var si = 0; si < cacheableImages.length; si++) {
     sprite = new Image();
-    sprite.src = 'sprites/' + SPRITES[si].fn;
-    sprite.id = 'sprite-' + SPRITES[si].prefix;
+    sprite.src = cacheableImages[si].path;
+    sprite.id = 'sprite-' + cacheableImages[si].prefix;
     document.getElementById('image-cache').appendChild(sprite);
   }
 
