@@ -1,5 +1,6 @@
 var GOING_STEP_LENGTH = 2000;
 var AUCTIONEER_STEP_LENGTH = 500;
+var AUDIENCE_STEP_LENGTH = 1000;
 
 var elements = {
   auctionHouse: document.getElementById('auction-house'),
@@ -152,5 +153,11 @@ function makeAuctioneerGesticulate() {
   setTimeout(makeAuctioneerGesticulate, Math.random() * AUCTIONEER_STEP_LENGTH);
 }
 
+function makeAudienceGesticulate() {
+  choice(enemyParticipants).element.setAttribute('data-gesticulation', choice([1, 4, 5, 6]).toString(10));
+  setTimeout(makeAudienceGesticulate, Math.random() * AUDIENCE_STEP_LENGTH);
+}
+
 runAuction();
 makeAuctioneerGesticulate();
+makeAudienceGesticulate();
