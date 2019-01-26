@@ -30,10 +30,10 @@ function Participant(name, isPlayer) {
 }
 
 var enemyParticipants = [
-  new Participant('rival one', false),
-  new Participant('rival two', false),
-  new Participant('rival three', false),
-  new Participant('rival four', false)
+  new Participant('Pherdinand van Maxinpants', false),
+  new Participant('Felicity Spendilwick', false),
+  new Participant('Hugh G. Waddington IV', false),
+  new Participant('Freddy "Wydelad" Bloggsmith', false)
 ];
 var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
@@ -71,7 +71,7 @@ Auction.prototype.getNextBidder = function() {
 
   var desirability;
 
-  desirability = (this.appraisal > this.currentBid) ? 1 : 0.1;  
+  desirability = Math.pow(((this.appraisal/6) / this.currentBid), 0.5);
 
   var mightBid = [];
 
@@ -95,7 +95,10 @@ Auction.prototype.setNextAction = function() {
   if (nextBidder) {
     this.nextAction = setTimeout(function() {
       self.bid(nextBidder);
-    }, Math.random() * GOING_STEP_LENGTH);
+    }, Math.min(
+      Math.random() * GOING_STEP_LENGTH * Math.min((this.currentBid / this.appraisal), 1),
+      (GOING_STEP_LENGTH / 4)
+    ));
   } else {
     console.log('not bidding');
 
