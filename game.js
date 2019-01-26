@@ -23,6 +23,8 @@ var ROOMS = [
 ];
 
 var elements = {
+  introduction: document.getElementById('client-introduction'),
+  acceptClient: document.getElementById('accept-client'),
   inspection: document.getElementById('inspection'),
   floorPlan: document.getElementById('floorplan'),
   acceptLot: document.getElementById('accept-lot'),
@@ -37,8 +39,9 @@ var elements = {
   goings: document.querySelectorAll('#goings span')
 };
 
-var auction;
+var client;
 var lot;
+var auction;
 
 function choice(list) {
   return list[Math.floor(Math.random() * list.length)];
@@ -284,6 +287,7 @@ Auction.prototype.bid = function(participant) {
 function runAuction(lot) {
   auction = new Auction(lot);
   elements.inspection.classList.remove('active');
+  elements.introduction.classList.remove('active');
   elements.auctionHouse.classList.add('active');
 
   makeAuctioneerGesticulate();
@@ -306,9 +310,7 @@ function makeAudienceGesticulate() {
 }
 
 function doLoop() {
-  // introduce a new client if we need to
-  // introduce a new lot, and then run the auction
-
+  // pre-cache stuff
   var sprite;
   for (var si = 0; si < SPRITES.length; si++) {
     sprite = new Image();
@@ -316,9 +318,22 @@ function doLoop() {
     sprite.id = 'sprite-' + SPRITES[si].prefix;
     document.getElementById('image-cache').appendChild(sprite);
   }
+
+  introduceClient();
+}
+
+function introduceClient() {
+  elements.auctionHouse.classList.remove('active');
+  elements.inspection.classList.remove('active');
+  elements.introduction.classList.add('active');
+}
+
+function doLot() {
+  // introduce a new lot, and then run the auction
   lot = new Lot();
   lot.inspect();
   elements.auctionHouse.classList.remove('active');
+  elements.introduction.classList.remove('active');
   elements.inspection.classList.add('active');
 }
 
@@ -326,6 +341,12 @@ elements.acceptLot.addEventListener('click', function(e) {
   e.preventDefault();
   e.stopPropagation();
   runAuction(lot);
+});
+
+elements.acceptClient.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  doLot();
 });
 
 elements.bidButton.addEventListener('click', function(e) {
