@@ -1,6 +1,6 @@
-let STEP_LENGTH = 2000;
+var STEP_LENGTH = 2000;
 
-let elements = {
+var elements = {
   auctionHouse: document.getElementById('auction-house'),
   wallet: document.getElementById('wallet'),
   currentBid: document.getElementById('current-bid'),
@@ -9,7 +9,7 @@ let elements = {
   participants: document.getElementById('participants'),
   bidButton: document.getElementById('bid-button'),
   goings: document.querySelectorAll('#goings span')
-}
+};
 
 var auction;
 
@@ -19,7 +19,7 @@ function choice(list) {
 
 function Participant(name, isPlayer) {
   this.name = name;
-  this.isPlayer = new Boolean(isPlayer);
+  this.isPlayer = Boolean(isPlayer);
   this.funds = 500;
 }
 
@@ -28,7 +28,7 @@ var enemyParticipants = [
   new Participant('rival two', false),
   new Participant('rival three', false),
   new Participant('rival four', false)
-]
+];
 var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
 
@@ -42,6 +42,7 @@ function Auction() {
   for (var pi = 0; pi < allParticipants.length; pi++) {
     participant = allParticipants[pi];
     participant.element = document.createElement('li');
+    participant.element.classList.add(participant.isPlayer ? 'player' : 'enemy');
     participant.element.appendChild(document.createTextNode(participant.name));
     elements.participants.appendChild(participant.element);
   }
@@ -53,7 +54,7 @@ Auction.prototype.getNextBidder = function() {
 
   var desirability;
 
-  (this.appraisal > this.currentBid) ? desirability = 1: desirability = 0.1;  
+  desirability = (this.appraisal > this.currentBid) ? 1 : 0.1;  
 
   var mightBid = [];
 
@@ -63,13 +64,11 @@ Auction.prototype.getNextBidder = function() {
     if (enemy === this.winningParticipant) {
       continue;
     }
-    console.log((Math.random() * desirability));
     if (Math.random() * desirability > 0.5) mightBid.push(enemy);
   }
-  console.log(mightBid);
 
   if (mightBid.length) return choice(mightBid);
-}
+};
 Auction.prototype.setNextAction = function() {
   var self = this;
 
@@ -88,14 +87,14 @@ Auction.prototype.setNextAction = function() {
       self.update();
     }, STEP_LENGTH);
   }
-}
+};
 Auction.prototype.update = function() {
   elements.currentBid.innerText = this.currentBid.toString(10);
 
   for (var pi = 0; pi < allParticipants.length; pi++) {
-    participant = allParticipants[pi]
+    participant = allParticipants[pi];
     if ((participant === this.winningParticipant) ^ (participant.element.classList.contains('winning'))) {
-      participant.element.classList.toggle('winning')
+      participant.element.classList.toggle('winning');
     }
   }
 
@@ -127,14 +126,14 @@ Auction.prototype.update = function() {
   } else {
     this.setNextAction();
   }
-}
+};
 Auction.prototype.bid = function(participant) {
   increment = Math.pow(10, Math.floor(Math.log10(this.currentBid * 5))-1);
   this.currentBid += increment;
   this.winningParticipant = participant;
   this.goingLevel = 0;
   this.update();
-}
+};
 
 function runAuction() {
   auction = new Auction();
@@ -143,7 +142,7 @@ function runAuction() {
     e.preventDefault();
     e.stopPropagation();
     auction.bid(playerParticipant);
-  })
+  });
 }
 
 runAuction();
