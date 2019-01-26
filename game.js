@@ -48,16 +48,51 @@ function Auction() {
     elements.participants.appendChild(participant.element);
   }
 
-  this.setNextAction();
   this.update();
 }
+Auction.prototype.getNextBidder = function() {
+  // calculate something better here based on each participant's wallet, the current bid vs. the appraisal price, and whether they're the interested participant
+
+  var desirability;
+
+  (this.appraisal > this.currentBid) ? desirability = 1: desirability = 0.1;  
+
+  var mightBid = [];
+  if ((Math.random() < desirability) && (this.interestedParticipant !== this.winningParticipant)) {
+    mightBid.push(this.interestedParticipant);
+  }
+
+  var enemy;
+  for (var ei = 0; ei < enemyParticipants.length; ei++) {
+    enemy = enemyParticipants[ei];
+    if (enemy === this.interestedParticipant || enemy === this.winningParticipant) {
+      continue;
+    }
+    console.log((Math.random() * desirability));
+    if (Math.random() * desirability > 0.5) mightBid.push(enemy);
+  }
+  console.log(mightBid);
+
+  if (mightBid.length) return choice(mightBid);
+}
 Auction.prototype.setNextAction = function() {
-  clearTimeout(this.nextAction);
   var self = this;
-  this.nextAction = setTimeout(function() {
-    self.goingLevel += 1;
-    self.update();
-  }, STEP_LENGTH);
+
+  clearTimeout(this.nextAction);
+
+  var nextBidder = this.getNextBidder();
+  if (nextBidder) {
+    this.nextAction = setTimeout(function() {
+      self.bid(nextBidder);
+    }, Math.random() * STEP_LENGTH);
+  } else {
+    console.log('not bidding');
+
+    this.nextAction = setTimeout(function() {
+      if (self.winningParticipant !== null) self.goingLevel += 1;
+      self.update();
+    }, STEP_LENGTH);
+  }
 }
 Auction.prototype.update = function() {
   elements.currentBid.innerText = this.currentBid.toString(10);
@@ -69,7 +104,19 @@ Auction.prototype.update = function() {
     }
   }
 
-  if ((this.winningParticipant === playerParticipant) ^ (elements.bidButton.hasAttribute('disabled'))) {
+  var ge;
+  var isOver = true;
+  for (var gi = 0; gi < elements.goings.length; gi++) {
+    ge = elements.goings[gi];
+    if (gi >= this.goingLevel) {
+      ge.classList.remove('shown');
+      isOver = false;
+    } else {
+      ge.classList.add('shown');
+    }
+  }
+
+  if ((isOver || (this.winningParticipant === playerParticipant)) ^ (elements.bidButton.hasAttribute('disabled'))) {
     elements.bidButton.toggleAttribute('disabled');
   }
 
@@ -80,37 +127,22 @@ Auction.prototype.update = function() {
     elements.highestBidder.innerText = 'nobody';
   }
 
-  var ge;
-  var notOver = true;
-  for (var gi = 0; gi < elements.goings.length; gi++) {
-    ge = elements.goings[gi];
-    if (gi >= this.goingLevel) {
-      ge.classList.remove('shown');
-    } else {
-      ge.classList.add('shown');
-      notOver = true;
-    }
-  }
-
-  if (!notOver) {
+  if (isOver) {
     console.log('this is over');
   } else {
     this.setNextAction();
   }
 }
-Auction.prototype.run = function() {
-  this.update();
-}
 Auction.prototype.bid = function(participant) {
   increment = Math.pow(10, Math.floor(Math.log10(this.currentBid * 5))-1);
   this.currentBid += increment;
   this.winningParticipant = participant;
+  this.goingLevel = 0;
   this.update();
 }
 
 function runAuction() {
   auction = new Auction();
-  auction.run();
 
   elements.bidButton.addEventListener('click', function(e) {
     e.preventDefault();
