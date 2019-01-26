@@ -10,7 +10,7 @@
     <div class="mode" id="inspection">
       <h1>lot <strong class="lot-number">4</strong> of <strong class="total-lots">12</strong></h1>
       <p class="address">69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
-      <canvas id="floorplan" width="600" height="600"></canvas>
+      <canvas id="floorplan" width="1360" height="1360" style="width: 680px; height: 680px;"></canvas>
       <p><button id="accept-lot">Start auction</button></p>
     </div>
 
@@ -59,12 +59,10 @@
     </script>
 
     <div id="image-cache">
-      <img id="floorplan-door" src="floorplan/symbols/door.png"/>
-      <img id="floorplan-3cross" src="floorplan/walls/e_wall_3cross.png"/>
-      <img id="floorplan-4cross" src="floorplan/walls/e_wall_4cross.png"/>
-      <img id="floorplan-corner" src="floorplan/walls/e_wall_corner.png"/>
-      <img id="floorplan-straight" src="floorplan/walls/e_wall_straight.png"/>
-      <img id="floorplan-wall" src="floorplan/walls/wall.png"/>
+      <img id="floorplan-door-n" src="floorplan/symbols/door_nowall_n.png"/>
+      <img id="floorplan-door-e" src="floorplan/symbols/door_nowall_e.png"/>
+      <img id="floorplan-door-s" src="floorplan/symbols/door_nowall_s.png"/>
+      <img id="floorplan-door-w" src="floorplan/symbols/door_nowall_w.png"/>
     </div>
     <script src="parts.js"></script>
     <script src="game.js"></script>
