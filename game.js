@@ -38,8 +38,6 @@ function Auction() {
   this.winningParticipant = null;
   this.goingLevel = 0;
 
-  this.interestedParticipant = choice(enemyParticipants);
-
   var participant;
   for (var pi = 0; pi < allParticipants.length; pi++) {
     participant = allParticipants[pi];
@@ -51,21 +49,18 @@ function Auction() {
   this.update();
 }
 Auction.prototype.getNextBidder = function() {
-  // calculate something better here based on each participant's wallet, the current bid vs. the appraisal price, and whether they're the interested participant
+  // calculate something better here based on each participant's wallet, the current bid vs. the appraisal price, and whether the property actually meets their needs
 
   var desirability;
 
   (this.appraisal > this.currentBid) ? desirability = 1: desirability = 0.1;  
 
   var mightBid = [];
-  if ((Math.random() < desirability) && (this.interestedParticipant !== this.winningParticipant)) {
-    mightBid.push(this.interestedParticipant);
-  }
 
   var enemy;
   for (var ei = 0; ei < enemyParticipants.length; ei++) {
     enemy = enemyParticipants[ei];
-    if (enemy === this.interestedParticipant || enemy === this.winningParticipant) {
+    if (enemy === this.winningParticipant) {
       continue;
     }
     console.log((Math.random() * desirability));
