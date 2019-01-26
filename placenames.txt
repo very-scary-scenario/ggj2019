@@ -17,7 +17,7 @@ Boughall
 Bowkham Hathes
 Bowlandy Green
 Bown Common
-Braad Wuane)
+Braad Wuane
 Brackermore
 Braddle Beck
 Braetown On Don-In Allfood
@@ -55,7 +55,7 @@ Claiston
 Clanwater
 Clarbendown
 Clardsburndy
-Clark'S Tornan
+Clark's Tornan
 Clarkland
 Clarl Trunswell
 Clarminford
@@ -165,7 +165,7 @@ Leaners Commenaer
 Leaning Mills
 Leasdy
 Leaston
-Leen'S Coiss Green
+Leen's Coiss Green
 Leenory Cavelfiae
 Lipe Melid
 Liveneigh
@@ -211,7 +211,7 @@ Nerton Jornstang
 Neth Bank
 Nethalestree
 Netham
-Nethe" 
+Nethe
 Nether Curster
 Netherman
 Nethershape
@@ -224,7 +224,6 @@ New Cotley
 New Cotter
 New Deck
 New End
-New End)
 New Green
 New Holgie
 New Lower
@@ -264,7 +263,7 @@ Newtown Hill
 Newtroygh
 Newwant
 Newy Vale
-Newy'S Cross
+Newy's Cross
 Neyfor
 Nighan Twaot
 Nine Onstead
@@ -328,7 +327,7 @@ Rauley
 Rayden
 Reace Burn
 Rean Onry
-Rhanch'S Hill
+Rhanch's Hill
 Riffe
 Rowendram
 Rownor
@@ -389,7 +388,7 @@ Tother-Ay
 Totterton
 Tottington
 Toveridge
-Tow Bridge'S Green
+Tow Bridge's Green
 Townham
 Trompfort
 Trowerwich
@@ -497,7 +496,7 @@ Warden
 Wardley
 Wardon Lane
 Wardrand
-Ware'S Villaide
+Ware's Villaide
 Warewscross
 Wareyporths
 Warford
@@ -523,7 +522,7 @@ Warton
 Wartple Chapis
 Warvay
 Warvel
-Warver (Thiwton
+Warver Thiwton
 Waster Worth-Y-Netart
 Waston Heath
 Watar
