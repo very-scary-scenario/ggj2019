@@ -9,3 +9,11 @@ html {
 #participants .winning {
   font-weight: bold;
 }
+
+#goings span {
+  display: none;
+}
+
+#goings span.shown {
+  display: inline;
+}
