@@ -7,23 +7,28 @@
   </head>
   <body>
     <div id="auction-house">
-      <h1>auction game</h1>
+      <div id="lot-info">
+        <h1>lot <strong>4</strong> of <strong>12</strong></h1>
+        <p>69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
+        <p>a beautifully rustic 1-bedroom terraced home, set in 0.01 acres of beautiful staines-esque mossland</p>
+      </div>
 
       <p>you have ⨓ <strong id="wallet">500</strong>
       <p>you are buying for <strong id="client">yurika toudou</strong>, who <strong>is a vampire</strong></p>
 
-      <h2>lot <strong>4</strong> of <strong>12</strong></h2>
-      <p>69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
-      <p>a beautifully rustic 1-bedroom terraced home, set in 0.01 acres of beautiful staines-esque mossland</p>
+      <div id="auctioneer">
+        <div id="auctioneer-interactions">
+          <p><button id="bid-button">place bid</button></p>
+          <p>current bid: ⨓ <strong id="current-bid">30</strong>, by <strong id="highest-bidder">you</strong>
+          <p id="goings">
+            <span>going…</span>
+            <span>going…</span>
+            <span>gone! sold to <strong id="winning-participant">you</strong></span>
+            &nbsp;
+          </p>
+        </div>
+      </div>
 
-      <p><button id="bid-button">place bid</button></p>
-      <p>current bid: ⨓ <strong id="current-bid">30</strong>, by <strong id="highest-bidder">you</strong>
-      <p id="goings">
-        <span>going…</span>
-        <span>going…</span>
-        <span>gone! sold to <strong id="winning-participant">you</strong></span>
-        &nbsp;
-      </p>
       <ul id="participants">
       <ul>
     </div>

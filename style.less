@@ -9,9 +9,14 @@ body {
   margin: 0 0;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #auction-house {
   position: relative;
-  box-sizing: border-box;
   margin: 0 auto;
   padding: 1em;
   max-width: @auction-width;
@@ -22,12 +27,55 @@ body {
   background-size: cover;
   color: white;
 
-  #bid-button {
-    font-size: 1.5em;
+  #lot-info {
+    background-color: fade(#c52, 50);
+    padding: .5em 1em;
+    border: .2em solid white;
+    border-radius: .5em;
+    float: right;
+    max-width: 50%;
   }
 
-  #participants .winning {
-    font-weight: bold;
+  #auctioneer {
+    position: absolute;
+    bottom: 10%;
+    height: 80%;
+    width: 50%;
+    background-image: url('Art Assets/auctioneer_1/AuctionGuy_1.png');
+    background-position: bottom 4em center;
+    background-size: auto 80%;
+    background-repeat: no-repeat;
+
+    #auctioneer-interactions {
+      p {
+        margin-top: .5em;
+      }
+
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      #bid-button {
+        display: block;
+        margin: 0 auto;
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  #participants {
+    position: absolute;
+    bottom: 0;
+    right: 1em;
+
+    > li {
+      display: inline-block;
+      margin: 0 .5em;
+
+      &.winning {
+        font-weight: bold;
+      }
+    }
   }
 
   #goings span {
