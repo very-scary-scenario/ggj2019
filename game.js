@@ -124,7 +124,7 @@ Auction.prototype.update = function() {
   }
 
   if (isOver) {
-    console.log('this is over');
+    this.winningParticipant.element.classList.add('won');
   } else {
     this.setNextAction();
   }
