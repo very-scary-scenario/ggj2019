@@ -1,26 +1,43 @@
-Generate dialogue like this: "A" "B" and "B". "C" "D". 
+Generate dialogue like this: "A" "B" "C" "D" and "D". "E" "F". 
 
-A (Speech starter)
-I want a house that has
-I would like a house that has
+#A (Greeting)
+Nice to meet you!
+How's it going?
+Hey.
+Sup.
+Hello.
+You the auction person?
+
+#B (Taste, where 'new' means anything is good)
+I'm looking to buy a (cute|cool|stylish|weird|new) house today.
+So I'm after a (cute|cool|stylish|weird|new) house. 
+I kinda want to get a (cute|cool|stylish|weird|new) house.
+Could you help get me a (cute|cool|stylish|weird|new) house?
+Let's try and win a (cute|cool|stylish|weird|new) house.
+
+#C (Speech starter)
+It needs to have
+I want it to have
 The house I want needs to have
-Hey. I want me a house that has
+I want me a house that has
 Give me a home that has
 My dream home needs 
 
 
-B (Essentials)
-(1-3) toilets
+#D (Requirements, brackets are desires, non-integer brackets are not always picked)
+(1-3) bathrooms
 (1-5) bedrooms
 (1-3) floors
 (1-10) windows
-(1-4) storage closets
-a small/average/large garden
-a study
-a basement
+a storage closet
+a (small|large) garden
+a (small|large) living room
+a (small|large) kitchen
+a (small|large) study
+a (small|large) basement
 
 
-C (Last speech)
+#E (Last speech)
 Also, I wouldn't mind if it had a
 I'd also quite like if it had a
 Plus, I want a
@@ -29,7 +46,7 @@ Oh, and a
 And how about a
 And it also needs to have a
 
-D (Non-essentials)
+#F (Non-essentials, this list needs to be what sprites we have)
 bath
 bed
 bridge
