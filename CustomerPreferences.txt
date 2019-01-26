@@ -2,11 +2,29 @@ Generate dialogue like this: "A" "B" "C" "D" and "D". "E" "F".
 
 #A (Greeting)
 Nice to meet you!
+Nice to finally meet you.
+Good to meet you.
 How's it going?
+How's things?
+How goes it?
+Good morning.
+Mornin'.
+Good afternoon.
+Afternoon.
+Good evening.
+Evening govna.
 Hey.
+Hey, uh.
 Sup.
+Sup!
 Hello.
+Hello!
+Hello?
 You the auction person?
+You that auction person?
+Wotcha.
+Eyy up.
+Pip pip.
 
 #B (Taste, where 'new' means anything is good)
 I'm looking to buy a (cute|cool|stylish|weird|new) house today.
@@ -14,6 +32,11 @@ So I'm after a (cute|cool|stylish|weird|new) house.
 I kinda want to get a (cute|cool|stylish|weird|new) house.
 Could you help get me a (cute|cool|stylish|weird|new) house?
 Let's try and win a (cute|cool|stylish|weird|new) house.
+I wanna get a (cute|cool|stylish|weird|new) house, ideally.
+I'm hoping you'll get me a (cute|cool|stylish|weird|new) house today.
+Try and get me a (cute|cool|stylish|weird|new) house today, will you?
+Get me a (cute|cool|stylish|weird|new) house, yeah?
+I want one of those (cute|cool|stylish|weird|new) houses, thanks.
 
 #C (Speech starter)
 It needs to have
@@ -22,7 +45,10 @@ The house I want needs to have
 I want me a house that has
 Give me a home that has
 My dream home needs 
-
+It must have
+I'd like it to have
+The place I'm looking for needs
+My house must have
 
 #D (Requirements, brackets are desires, non-integer brackets are not always picked)
 (1-3) bathrooms
@@ -40,11 +66,14 @@ a (small|large) basement
 #E (Last speech)
 Also, I wouldn't mind if it had a
 I'd also quite like if it had a
+I'd also appreciate a
 Plus, I want a
 Cool, and a
 Oh, and a 
+Plus maybe a
 And how about a
 And it also needs to have a
+And throw in a
 
 #F (Non-essentials, this list needs to be what sprites we have)
 armchair
