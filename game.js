@@ -5,6 +5,7 @@ var AUDIENCE_STEP_LENGTH = 1000;
 var ROOM_WALL_WIDTH = 20;
 var ROOM_WALL_LENGTH = 320;
 var DOOR_SIZE = ROOM_WALL_LENGTH/4;
+var STEPS_SIZE = ROOM_WALL_LENGTH/2;
 var SPRITE_SIZE = 128;
 
 var ROOMS = [
@@ -91,9 +92,17 @@ Lot.prototype.draw = function() {
   for (var y = 0; y < 7; y++) { for (var x = 0; x < 7; x++) {
     if ((x % 2) && (y % 2)) {
       // this is the space inside a room
+
+      // should there be steps here?
+      if (Math.random() < (1/18)) {
+        var margin = Math.floor(0.5 * (ROOM_WALL_LENGTH - STEPS_SIZE));
+        ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + margin, locForCoordinate(y) + margin, STEPS_SIZE, STEPS_SIZE);
+        continue;
+      }
+
       // should we furnish it?
       var sprite;
-      var itemNeed = 0.75;
+      var itemNeed = 0.6;
 
       while (Math.random() < itemNeed) {
         itemNeed = itemNeed/2;
@@ -116,7 +125,7 @@ Lot.prototype.draw = function() {
       }
 
       // should we give it a name?
-      if (Math.random() < 0.2) {
+      if (Math.random() < 0.25) {
         ctx.fillText(choice(ROOMS), locForCoordinate(x) + ROOM_WALL_LENGTH / 2, locForCoordinate(y) + ROOM_WALL_LENGTH / 2);
       }
 
