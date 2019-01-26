@@ -157,24 +157,26 @@ Lot.prototype.draw = function() {
           continue;
         }
       } else {
-        // this is an internal wall
-        // do we want to draw a door?
-        if (Math.random() > 0.25) continue;
-
-        if (x % 2) {
-          // this is a horizontal wall
-          if (Math.random() > 0.5) {
-            ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y) - DOOR_SIZE, DOOR_SIZE, DOOR_SIZE);
-          } else {
-            ctx.drawImage(document.getElementById('floorplan-door-s'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y + 1), DOOR_SIZE, DOOR_SIZE);
-          }
-        }
-        else if (y % 2) {
-          // this is a vertical wall
-          if (Math.random() > 0.5) {
-            ctx.drawImage(document.getElementById('floorplan-door-w'), locForCoordinate(x) - DOOR_SIZE, locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
-          } else {
-            ctx.drawImage(document.getElementById('floorplan-door-e'), locForCoordinate(x + 1), locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+        // this is a space for an internal wall
+        // do we want to leave it empty?
+        if (Math.random() > 0.4) {
+          continue;
+        // do we want a door on it?
+        } else if (Math.random() > 0.5) {
+          if (x % 2) {
+            // this is a horizontal wall
+            if (Math.random() > 0.5) {
+              ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y) - DOOR_SIZE, DOOR_SIZE, DOOR_SIZE);
+            } else {
+              ctx.drawImage(document.getElementById('floorplan-door-s'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y + 1), DOOR_SIZE, DOOR_SIZE);
+            }
+          } else if (y % 2) {
+            // this is a vertical wall
+            if (Math.random() > 0.5) {
+              ctx.drawImage(document.getElementById('floorplan-door-w'), locForCoordinate(x) - DOOR_SIZE, locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+            } else {
+              ctx.drawImage(document.getElementById('floorplan-door-e'), locForCoordinate(x + 1), locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+            }
           }
         }
       }
