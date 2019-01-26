@@ -3,6 +3,7 @@
 html {
   font-size: 1.5rem;
   background-color: black;
+  color: white;
 }
 
 body {
@@ -18,17 +19,29 @@ body {
   box-sizing: border-box;
 }
 
-#auction-house {
+button {
+  font-size: 1.3em;
+}
+
+.mode {
   position: relative;
   margin: 0 auto;
   padding: 1em;
-  max-width: @auction-width;
   height: 100vh;
+  width: 100vw;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+#auction-house {
   background-image: url('small-art/bg.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  color: white;
+  max-width: @auction-width;
 
   #lot-info {
     background-color: fade(#c52, 50);
@@ -72,7 +85,6 @@ body {
       #bid-button {
         display: block;
         margin: 0 auto;
-        font-size: 1.3em;
       }
     }
   }

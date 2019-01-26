@@ -3,6 +3,8 @@ var AUCTIONEER_STEP_LENGTH = 500;
 var AUDIENCE_STEP_LENGTH = 1000;
 
 var elements = {
+  inspection: document.getElementById('inspection'),
+  acceptLot: document.getElementById('accept-lot'),
   auctionHouse: document.getElementById('auction-house'),
   auctioneer: document.getElementById('auctioneer'),
   wallet: document.getElementById('wallet'),
@@ -15,6 +17,7 @@ var elements = {
 };
 
 var auction;
+var lot;
 
 function choice(list) {
   return list[Math.floor(Math.random() * list.length)];
@@ -35,6 +38,18 @@ var enemyParticipants = [
 var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
 
+function Lot() {
+  this.address = '69 ticklebutt lane';
+  this.description = 'just a bad house is all';
+}
+Lot.prototype.inspect = function() {
+  elements.inspection.querySelector('.address').innerText = this.address;
+  elements.auctionHouse.querySelector('.address').innerText = this.address;
+
+  elements.inspection.querySelector('.description').innerText = this.description;
+  elements.auctionHouse.querySelector('.description').innerText = this.description;
+};
+
 function Auction() {
   this.currentBid = 10;
   this.appraisal = 500;
@@ -50,6 +65,8 @@ function Auction() {
     elements.participants.appendChild(participant.element);
   }
 
+  makeAudienceGesticulate();
+  makeAuctioneerGesticulate();
   this.update();
 }
 Auction.prototype.getNextBidder = function() {
@@ -138,26 +155,51 @@ Auction.prototype.bid = function(participant) {
   this.update();
 };
 
-function runAuction() {
-  auction = new Auction();
+function runAuction(lot) {
+  auction = new Auction(lot);
+  elements.inspection.classList.remove('active');
+  elements.auctionHouse.classList.add('active');
 
-  elements.bidButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    auction.bid(playerParticipant);
-  });
+  makeAuctioneerGesticulate();
+  makeAudienceGesticulate();
 }
 
+var auctioneerGesticulationTimeout;
+var audienceGesticulationTimeout;
+
 function makeAuctioneerGesticulate() {
+  clearTimeout(auctioneerGesticulationTimeout);
   elements.auctioneer.setAttribute('data-gesticulation', (Math.floor(Math.random() * 11) + 1).toString(10));
-  setTimeout(makeAuctioneerGesticulate, Math.random() * AUCTIONEER_STEP_LENGTH);
+  auctioneerGesticulationTimeout = setTimeout(makeAuctioneerGesticulate, Math.random() * AUCTIONEER_STEP_LENGTH);
 }
 
 function makeAudienceGesticulate() {
+  clearTimeout(audienceGesticulationTimeout);
   choice(enemyParticipants).element.setAttribute('data-gesticulation', choice([1, 4, 5, 6]).toString(10));
-  setTimeout(makeAudienceGesticulate, Math.random() * AUDIENCE_STEP_LENGTH);
+  audienceGesticulationTimeout = setTimeout(makeAudienceGesticulate, Math.random() * AUDIENCE_STEP_LENGTH);
 }
 
-runAuction();
-makeAuctioneerGesticulate();
-makeAudienceGesticulate();
+function doLoop() {
+  // introduce a new client if we need to
+  // introduce a new lot, and then run the auction
+
+  lot = new Lot();
+  lot.inspect();
+  elements.auctionHouse.classList.remove('active');
+  elements.inspection.classList.add('active');
+}
+
+elements.acceptLot.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  runAuction(lot);
+});
+
+elements.bidButton.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  auction.bid(playerParticipant);
+});
+
+
+doLoop();
