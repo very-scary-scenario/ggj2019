@@ -106,7 +106,7 @@ Lot.prototype.draw = function() {
       // this is the space inside a room
 
       // should there be steps here?
-      if (Math.random() < (1/18)) {
+      if (Math.random() < (1/10)) {
         var margin = Math.floor(0.5 * (ROOM_WALL_LENGTH - STEPS_SIZE));
         var step = choice(STEP_SPRITES);
         ctx.drawImage(document.getElementById('sprite-' + step.prefix), locForCoordinate(x) + margin, locForCoordinate(y) + margin, STEPS_SIZE, STEPS_SIZE);
