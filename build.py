@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 
 
@@ -23,16 +24,31 @@ def build_parts():
     with open('placenames.txt') as pnf:
         place_names = [pn.strip() for pn in pnf.readlines() if pn.strip()]
 
+    sprites = []
+
+    for sprite in os.listdir('sprites'):
+        prefix = os.path.splitext(sprite)[0]
+        (name, *tags) = prefix.split('-')
+        sprites.append({
+            'fn': sprite,
+            'prefix': prefix,
+            'name': name,
+            'tags': tags,
+        })
+
     with open('parts.js', 'w') as pf:
         pf.write("""
             var STREET_NAMES_A = {};
             var STREET_NAMES_B = {};
             var PLACE_NAMES = {};
+            var SPRITES = {};
         """.format(
             json.dumps(street_names_a),
             json.dumps(street_names_b),
             json.dumps(place_names),
+            json.dumps(sprites),
         ))
+
 
 
 def compile_less():

@@ -5,6 +5,7 @@ var AUDIENCE_STEP_LENGTH = 1000;
 var ROOM_WALL_WIDTH = 20;
 var ROOM_WALL_LENGTH = 320;
 var DOOR_SIZE = ROOM_WALL_LENGTH/4;
+var SPRITE_SIZE = 128;
 
 var ROOMS = [
   'Toilet',
@@ -74,6 +75,7 @@ Lot.prototype.draw = function() {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillStyle = 'white';
+  ctx.imageSmoothingEnabled = true;
 
   function locForCoordinate(coord) {
     return (
@@ -89,9 +91,35 @@ Lot.prototype.draw = function() {
   for (var y = 0; y < 7; y++) { for (var x = 0; x < 7; x++) {
     if ((x % 2) && (y % 2)) {
       // this is the space inside a room
+      // should we furnish it?
+      var sprite;
+      var itemNeed = 0.75;
+
+      while (Math.random() < itemNeed) {
+        itemNeed = itemNeed/2;
+        sprite = choice(SPRITES);
+        var spriteX = locForCoordinate(x);
+        var spriteY = locForCoordinate(y);
+
+        // pick a wall to stick to
+        if (Math.random() > 0.5) {
+          spriteX += Math.floor(Math.random() * (ROOM_WALL_LENGTH - SPRITE_SIZE));
+          spriteY = (Math.random() > 0.5) ? spriteY : spriteY + (ROOM_WALL_LENGTH - SPRITE_SIZE);
+        } else {
+          spriteY += Math.floor(Math.random() * (ROOM_WALL_LENGTH - SPRITE_SIZE));
+          spriteX = (Math.random() > 0.5) ? spriteX : spriteX + (ROOM_WALL_LENGTH - SPRITE_SIZE);
+        }
+
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(document.getElementById('sprite-' + sprite.prefix), spriteX, spriteY, SPRITE_SIZE, SPRITE_SIZE);
+        ctx.imageSmoothingEnabled = true;
+      }
+
+      // should we give it a name?
       if (Math.random() < 0.2) {
         ctx.fillText(choice(ROOMS), locForCoordinate(x) + ROOM_WALL_LENGTH / 2, locForCoordinate(y) + ROOM_WALL_LENGTH / 2);
       }
+
       continue;
     }
     else if ((x !== 0 && x !==6 && y !== 0 && y !== 6) && ((x % 2) || (y % 2))) {
@@ -259,6 +287,13 @@ function doLoop() {
   // introduce a new client if we need to
   // introduce a new lot, and then run the auction
 
+  var sprite;
+  for (var si = 0; si < SPRITES.length; si++) {
+    sprite = new Image();
+    sprite.src = 'sprites/' + SPRITES[si].fn;
+    sprite.id = 'sprite-' + SPRITES[si].prefix;
+    document.getElementById('image-cache').appendChild(sprite);
+  }
   lot = new Lot();
   lot.inspect();
   elements.auctionHouse.classList.remove('active');
