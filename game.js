@@ -2,8 +2,12 @@ var GOING_STEP_LENGTH = 2000;
 var AUCTIONEER_STEP_LENGTH = 500;
 var AUDIENCE_STEP_LENGTH = 1000;
 
+var ROOM_WALL_WIDTH = 15;
+var ROOM_WALL_LENGTH = 140;
+
 var elements = {
   inspection: document.getElementById('inspection'),
+  floorPlan: document.getElementById('floorplan'),
   acceptLot: document.getElementById('accept-lot'),
   auctionHouse: document.getElementById('auction-house'),
   auctioneer: document.getElementById('auctioneer'),
@@ -38,13 +42,37 @@ var enemyParticipants = [
 var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
 
+function Client() {
+}
+
 function Lot() {
   this.address = (Math.floor(Math.pow(Math.random(), 3) * 200) + 1).toString(10) + ' ' + choice(choice(STREET_NAMES_A)) + ' ' + choice(choice(STREET_NAMES_B)) + ', ' + choice(PLACE_NAMES);
+  this.draw();
 }
 Lot.prototype.inspect = function() {
   elements.inspection.querySelector('.address').innerText = this.address;
   elements.auctionHouse.querySelector('.address').innerText = this.address;
+};
+Lot.prototype.draw = function() {
+  var ctx = elements.floorPlan.getContext('2d');
 
+  function locForCoordinate(coord) {
+    return (
+      (Math.floor(coord/2) * ROOM_WALL_LENGTH) +
+      (Math.floor((coord+1)/2) * ROOM_WALL_WIDTH)
+    );
+  }
+  function sizeForCoordinate(coord) {
+    return (coord % 2) ? ROOM_WALL_LENGTH : ROOM_WALL_WIDTH;
+  }
+
+  for (var y = 0; y < 7; y++) { for (var x = 0; x < 7; x++) {
+    if ((x % 2) && (y % 2)) continue;
+    if ((x !== 0 && x !==6 && y !== 0 && y !== 6) && ((x % 2) || (y % 2))) {
+      if (Math.random() > 0.5) continue;
+    }
+    ctx.drawImage(document.getElementById('floorplan-corner'), locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
+  }}
 };
 
 function Auction() {
