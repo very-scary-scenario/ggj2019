@@ -39,15 +39,12 @@ var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
 
 function Lot() {
-  this.address = '69 ticklebutt lane';
-  this.description = 'just a bad house is all';
+  this.address = (Math.floor(Math.pow(Math.random(), 3) * 200) + 1).toString(10) + ' ' + choice(choice(STREET_NAMES_A)) + ' ' + choice(choice(STREET_NAMES_B)) + ', ' + choice(PLACE_NAMES);
 }
 Lot.prototype.inspect = function() {
   elements.inspection.querySelector('.address').innerText = this.address;
   elements.auctionHouse.querySelector('.address').innerText = this.address;
 
-  elements.inspection.querySelector('.description').innerText = this.description;
-  elements.auctionHouse.querySelector('.description').innerText = this.description;
 };
 
 function Auction() {
@@ -200,6 +197,5 @@ elements.bidButton.addEventListener('click', function(e) {
   e.stopPropagation();
   auction.bid(playerParticipant);
 });
-
 
 doLoop();
