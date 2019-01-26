@@ -86,7 +86,9 @@ Alley
 Avenue
 Bank
 Boulevard
+Business Park
 Close
+Chase
 Corner
 Court
 Crescent
@@ -101,14 +103,21 @@ Heights
 Hill|Hills
 Lane
 Link
+Meadow
 Mews
 Parade
+Path
+Place
+Ridge
 Rise
 Road
+Shopping Centre
 Square
 Street
+Terrace
 Vale
 View
 Walk
 Way
+Wood
 Yard
