@@ -61,6 +61,14 @@ var enemyParticipants = [
 ];
 var playerParticipant = new Participant('you', true);
 var allParticipants = [playerParticipant].concat(enemyParticipants);
+var participant;
+for (var pi = 0; pi < allParticipants.length; pi++) {
+  participant = allParticipants[pi];
+  participant.element = document.createElement('li');
+  participant.element.classList.add(participant.isPlayer ? 'player' : 'enemy');
+  participant.element.appendChild(document.createTextNode(participant.name));
+  elements.participants.appendChild(participant.element);
+}
 
 function Client() {
 }
@@ -75,6 +83,7 @@ Lot.prototype.inspect = function() {
 };
 Lot.prototype.draw = function() {
   var ctx = elements.floorPlan.getContext('2d');
+  ctx.clearRect(0, 0, elements.floorPlan.width, elements.floorPlan.height);
   ctx.font = (ROOM_WALL_WIDTH * 2).toString(10) + 'px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -182,15 +191,6 @@ function Auction() {
   this.winningParticipant = null;
   this.goingLevel = 0;
 
-  var participant;
-  for (var pi = 0; pi < allParticipants.length; pi++) {
-    participant = allParticipants[pi];
-    participant.element = document.createElement('li');
-    participant.element.classList.add(participant.isPlayer ? 'player' : 'enemy');
-    participant.element.appendChild(document.createTextNode(participant.name));
-    elements.participants.appendChild(participant.element);
-  }
-
   makeAudienceGesticulate();
   makeAuctioneerGesticulate();
   this.update();
@@ -238,6 +238,9 @@ Auction.prototype.setNextAction = function() {
   }
 };
 Auction.prototype.update = function() {
+  var self = this;
+
+  elements.wallet.innerText = playerParticipant.funds.toString(10);
   elements.currentBid.innerText = this.currentBid.toString(10);
 
   for (var pi = 0; pi < allParticipants.length; pi++) {
@@ -272,6 +275,20 @@ Auction.prototype.update = function() {
 
   if (isOver) {
     this.winningParticipant.element.classList.add('won');
+    this.winningParticipant.funds -= this.currentBid;
+
+    if (this.winningParticipant === playerParticipant) {
+      setTimeout(function() {
+        alert('you won this house!');
+        introduceClient();
+      }, GOING_STEP_LENGTH);
+    } else {
+      setTimeout(function() {
+        alert('you did not win this house');
+        doLot();
+      }, GOING_STEP_LENGTH);
+    }
+
   } else {
     this.setNextAction();
   }
