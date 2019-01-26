@@ -6,7 +6,14 @@ Has (no kids|one kid|two kids) and (is planning on having more|has no plans for 
 Spends their weekends watching (soaps|sports|drama|old movies) while sprawled out on the (bed|couch|floor). 
 Enjoys (short|long) drives around (coastal towns|the countryside|areas of the country they've not visited before).
 Currently works for a (small business|large business|conglomerate|start-up) in the (education|medical|transportation) sector.
-
+Currently (has no pets, and isn't looking to get any|has no pets, but would like to get one soon|has a pet dog, and would like to get another|has a pet cat, which is very fluffy).
+Will be moving in (by themselves|with their partner|with a friend), and it's (their first house purchase|their first house together|not the first time they've bought a house). 
+Regularly (takes the train to work|drives to work|walks to work|works from home).
+Has been looking to buy a home for (almost a week|almost a month|almost a year|several years) and has decided to take the plunge today.
+Is relocating from (their hometown|their university town|the next town over|the big city|another country), wanting to settle in a (smaller|larger|busier|quieter|similar) locale.
+They enjoy talking about travelling, (though they've never actually been abroad|though they've only been abroad a few times|and they regularly visit foreign countries).
+Has thought about what they'd do with a garden, and (are hoping to plant a lot of flowers|plan to do something extravagant with it|will probably pave it over for a larger driveway). 
+(Sometimes|Always|Occasionally) (hooks up with people on dating sites|brings friends over for drinks|hosts board game nights), and is buying a house to accomodate that. 
 
 #B (Pick one)
 Their parents are paying for the deposit, and will likely be paying for the rest, too. 
@@ -37,3 +44,4 @@ Knows the auctioneer personally but still won't get a good deal.
 Accidentally listed their home for auction and is here to win it back.
 Learned that one of the houses has a hidden stash of money and is trying their luck.
 Is buying the house using someone else's credit card.
+They've arrived knowing what they want, and (won't leave until they get it|will probably settle for something similar|will likely panic buy something). 
