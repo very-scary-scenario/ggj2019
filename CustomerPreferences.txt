@@ -47,34 +47,51 @@ And how about a
 And it also needs to have a
 
 #F (Non-essentials, this list needs to be what sprites we have)
-bath
+armchair
+*bath
 bed
-bridge
-bunk-bed
-cat
-dog
-dungeon
-fence
-fridge
-flowerbed
-garage
-gate
-oven
-pavement
-pond
-post box
-radiator
-river
-rug
-shed
-shower
-sofa
-swimming pool
-table
+bird cage
+bridge*
+bunk-bed*
+cactus
+cat*
+cat scratching post
+coffee table
+coffin
+computer
+couch
+dining table*
+dog*
+drawers
+dungeon*
+electric coil
+fence*
+freezer
+fridge*
+flowerbed*
+garage*
+gate*
+iron maiden
+lamp
+model train set
+oven*
+painting
+pavement*
+pentagram
+pond*
+portable heater
+post box*
+radiator*
+river*
+rug*
+shed*
+shower*
+swimming pool*
 television
-tree
-tree swing
-treehouse
-
+treadmill
+tree*
+tree swing*
+treehouse*
+wardrobe
 
 
