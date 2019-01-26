@@ -130,30 +130,43 @@ Lot.prototype.draw = function() {
       }
 
       continue;
-    }
-    else if ((x !== 0 && x !==6 && y !== 0 && y !== 6) && ((x % 2) || (y % 2))) {
-      // this is an internal wall
-      // do we want to draw a door?
-      if (Math.random() > 0.25) continue;
-
-      if (x % 2) {
-        // this is a horizontal wall
+    } else if ((x % 2) || (y % 2)) {
+      // this is a wall
+      if (x === 0 || x === 6 || y === 0 || y === 6) {
+        // this is an external wall
+        // should we put a window on it?
         if (Math.random() > 0.5) {
-          ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y) - DOOR_SIZE, DOOR_SIZE, DOOR_SIZE);
-        } else {
-          ctx.drawImage(document.getElementById('floorplan-door-s'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y + 1), DOOR_SIZE, DOOR_SIZE);
+          if (x % 2) {
+            ctx.drawImage(document.getElementById('floorplan-window-h'), locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
+          } else {
+            ctx.drawImage(document.getElementById('floorplan-window-v'), locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
+          }
+          continue;
         }
-      }
-      else if (y % 2) {
-        // this is a vertical wall
-        if (Math.random() > 0.5) {
-          ctx.drawImage(document.getElementById('floorplan-door-w'), locForCoordinate(x) - DOOR_SIZE, locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
-        } else {
-          ctx.drawImage(document.getElementById('floorplan-door-e'), locForCoordinate(x + 1), locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+      } else {
+        // this is an internal wall
+        // do we want to draw a door?
+        if (Math.random() > 0.25) continue;
+
+        if (x % 2) {
+          // this is a horizontal wall
+          if (Math.random() > 0.5) {
+            ctx.drawImage(document.getElementById('floorplan-door-n'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y) - DOOR_SIZE, DOOR_SIZE, DOOR_SIZE);
+          } else {
+            ctx.drawImage(document.getElementById('floorplan-door-s'), locForCoordinate(x) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), locForCoordinate(y + 1), DOOR_SIZE, DOOR_SIZE);
+          }
+        }
+        else if (y % 2) {
+          // this is a vertical wall
+          if (Math.random() > 0.5) {
+            ctx.drawImage(document.getElementById('floorplan-door-w'), locForCoordinate(x) - DOOR_SIZE, locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+          } else {
+            ctx.drawImage(document.getElementById('floorplan-door-e'), locForCoordinate(x + 1), locForCoordinate(y) + Math.floor(Math.random() * (ROOM_WALL_LENGTH - DOOR_SIZE)), DOOR_SIZE, DOOR_SIZE);
+          }
         }
       }
     } else {
-      // this is either an external wall or a node
+      // this is a node
     }
 
     ctx.fillRect(locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
