@@ -41,13 +41,24 @@ body {
 
   #auctioneer {
     position: absolute;
-    bottom: 10%;
+    bottom: 15%;
     height: 80%;
-    width: 50%;
-    background-image: url('Art Assets/auctioneer_1/AuctionGuy_1.png');
-    background-position: bottom 4em center;
+    width: 70%;
+    background-position: bottom 1.5em center;
     background-size: auto 80%;
     background-repeat: no-repeat;
+
+    &[data-gesticulation="1"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_1.png'); }
+    &[data-gesticulation="2"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_2.png'); }
+    &[data-gesticulation="3"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_3.png'); }
+    &[data-gesticulation="4"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_4.png'); }
+    &[data-gesticulation="5"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_5.png'); }
+    &[data-gesticulation="6"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_6.png'); }
+    &[data-gesticulation="7"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_7.png'); }
+    &[data-gesticulation="8"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_8.png'); }
+    &[data-gesticulation="9"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_9.png'); }
+    &[data-gesticulation="10"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_10.png'); }
+    &[data-gesticulation="11"] { background-image: url('Art Assets/auctioneer_1/AuctionGuy_11.png'); }
 
     #auctioneer-interactions {
       p {
@@ -61,7 +72,7 @@ body {
       #bid-button {
         display: block;
         margin: 0 auto;
-        font-size: 1.5em;
+        font-size: 1.3em;
       }
     }
   }

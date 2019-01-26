@@ -1,7 +1,9 @@
-var STEP_LENGTH = 2000;
+var GOING_STEP_LENGTH = 2000;
+var AUCTIONEER_STEP_LENGTH = 500;
 
 var elements = {
   auctionHouse: document.getElementById('auction-house'),
+  auctioneer: document.getElementById('auctioneer'),
   wallet: document.getElementById('wallet'),
   currentBid: document.getElementById('current-bid'),
   highestBidder: document.getElementById('highest-bidder'),
@@ -78,14 +80,14 @@ Auction.prototype.setNextAction = function() {
   if (nextBidder) {
     this.nextAction = setTimeout(function() {
       self.bid(nextBidder);
-    }, Math.random() * STEP_LENGTH);
+    }, Math.random() * GOING_STEP_LENGTH);
   } else {
     console.log('not bidding');
 
     this.nextAction = setTimeout(function() {
       if (self.winningParticipant !== null) self.goingLevel += 1;
       self.update();
-    }, STEP_LENGTH);
+    }, GOING_STEP_LENGTH);
   }
 };
 Auction.prototype.update = function() {
@@ -145,4 +147,10 @@ function runAuction() {
   });
 }
 
+function makeAuctioneerGesticulate() {
+  elements.auctioneer.setAttribute('data-gesticulation', (Math.floor(Math.random() * 11) + 1).toString(10));
+  setTimeout(makeAuctioneerGesticulate, Math.random() * AUCTIONEER_STEP_LENGTH);
+}
+
 runAuction();
+makeAuctioneerGesticulate();
