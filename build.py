@@ -1,6 +1,46 @@
 import json
 import os
+import re
 import subprocess
+
+
+def parse_sectioned_file(fn):
+    sections = {}
+    current_section = None
+
+    with open(fn, 'rt') as f:
+        for line in f.readlines():
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith('#'):
+                current_section = []
+                sections[re.sub(
+                    r'\(.*\)', '', line,
+                ).strip('# ')] = current_section
+            else:
+                current_section.append(parse_bracketed_line(line))
+
+    return sections
+
+
+def parse_bracketed_line(line):
+    options = []
+    for bracketed, unbracketed in (
+        (m.group('bracketed'), m.group('unbracketed')) for m in
+        re.finditer(
+            r'(?P<bracketed>\(.+?\))'
+            r'|'
+            r'(?P<unbracketed>((?<=\))|^).+?((?=\()|$))',
+            line,
+        )
+    ):
+        if unbracketed:
+            options.append([unbracketed])
+        elif bracketed:
+            options.append(bracketed.strip('()').split('|'))
+
+    return options
 
 
 def build_parts():
@@ -53,6 +93,9 @@ def build_parts():
             'path': os.path.join('floorplan', 'symbols', step),
         })
 
+    life_stories = parse_sectioned_file('CustomerLifeStories.txt')
+    preferences = parse_sectioned_file('CustomerPreferences.txt')
+
     with open('parts.js', 'w') as pf:
         pf.write("""
             var STREET_NAMES_A = {};
@@ -61,6 +104,8 @@ def build_parts():
             var FURNITURE_SPRITES = {};
             var STEP_SPRITES = {};
             var CLIENT_SPRITES = {};
+            var CLIENT_STORIES = {};
+            var CLIENT_PREFERENCES = {};
         """.format(
             json.dumps(street_names_a),
             json.dumps(street_names_b),
@@ -68,6 +113,8 @@ def build_parts():
             json.dumps(sprites),
             json.dumps(steps),
             json.dumps(clients),
+            json.dumps(life_stories),
+            json.dumps(preferences),
         ))
 
 

@@ -1,5 +1,3 @@
-Generate dialogue like this: "A" "B" "C" "D" and "D". "E" "F". 
-
 #A (Greeting)
 Nice to meet you!
 Nice to finally meet you.

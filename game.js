@@ -26,6 +26,8 @@ var elements = {
   introduction: document.getElementById('client-introduction'),
   acceptClient: document.getElementById('accept-client'),
   clientAvatar: document.getElementById('client-avatar'),
+  clientStory: document.getElementById('client-story'),
+  clientPreferences: document.getElementById('client-preferences'),
   inspection: document.getElementById('inspection'),
   floorPlan: document.getElementById('floorplan'),
   acceptLot: document.getElementById('accept-lot'),
@@ -74,8 +76,35 @@ for (var pi = 0; pi < allParticipants.length; pi++) {
   elements.participants.appendChild(participant.element);
 }
 
+function chooseSentence(options) {
+  string = '';
+  baseList = choice(options);
+  for (var i = 0; i < baseList.length; i++) {
+    string = string + choice(baseList[i]);
+  }
+  return string;
+}
+
+function splitCamel(camelCasePhrase) {
+  return camelCasePhrase.replace(/([A-Z])/g, function(m) {
+    return ' ' + m.toLowerCase();
+  });
+}
+
 function Client() {
   this.sprite = choice(CLIENT_SPRITES);
+  this.story = [
+    chooseSentence(CLIENT_STORIES.A),
+    chooseSentence(CLIENT_STORIES.A),
+    chooseSentence(CLIENT_STORIES.B),
+  ];
+  this.preferences = [
+    chooseSentence(CLIENT_PREFERENCES.A),
+    chooseSentence(CLIENT_PREFERENCES.B),
+    chooseSentence(CLIENT_PREFERENCES.C) + ' a ' + choice(ROOMS).toLowerCase() + '.',
+    chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(choice(FURNITURE_SPRITES).name) + '.',
+    chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(choice(FURNITURE_SPRITES).name) + '.',
+  ];
 }
 
 function Lot() {
@@ -372,6 +401,19 @@ function introduceClient() {
   elements.auctionHouse.classList.remove('active');
   elements.inspection.classList.remove('active');
   elements.introduction.classList.add('active');
+
+  var p;
+  for (var si = 0; si < client.story.length; si++) {
+    p = document.createElement('p');
+    p.innerText = client.story[si];
+    elements.clientStory.appendChild(p);
+  }
+
+  for (var pi = 0; pi < client.preferences.length; pi++) {
+    p = document.createElement('p');
+    p.innerText = client.preferences[pi];
+    elements.clientPreferences.appendChild(p);
+  }
 }
 
 function doLot() {
