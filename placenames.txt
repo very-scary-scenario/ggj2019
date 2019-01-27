@@ -172,7 +172,7 @@ Liveneigh
 Llaft Den-Inham
 Llagesne
 Llanbraven
-Llatton Street
+Llatton
 Loch Walme
 Lome Hill
 Long Cavian
@@ -205,7 +205,7 @@ Neent Town
 Nehbay
 Nelmwarth
 Nelton Enm
-Neoke Street
+Neoke
 Nerton Heath
 Nerton Jornstang
 Neth Bank
@@ -223,14 +223,13 @@ New Blander
 New Cotley
 New Cotter
 New Deck
-New End
 New Green
 New Holgie
 New Lower
 New Maixhey
 New Moor
 New Strees
-New Street
+New
 New Strodhow
 Newbagnes
 Newborough
@@ -250,12 +249,10 @@ Newpold
 Newshame
 Newt Of Breston
 Newtide
-Newton
 Newton Beck
 Newton Brooley Hill
 Newton Green
 Newton Raybott
-Newton Street
 Newtoug
 Newtown
 Newtown Hill
@@ -264,7 +261,6 @@ Newwant
 Newy Vale
 Newy's Cross
 Neyfor
-Nighan Twaot
 Nine Onstead
 Nington
 Nington Haw
@@ -289,10 +285,8 @@ Northope
 Northwaite
 Nortk Cosserthorpe
 Nortock
-Norton
 Norton Bridsey
 Norton Stoke
-Norton Street
 Nortonkill
 Nortton 
 Noryheadn
@@ -397,7 +391,7 @@ Tudwell
 Tuorstown
 Turn'S Housend
 Turrovidie
-Turton Street
+Turton
 Turton Tovery
 Tushall
 Tworthend Town
@@ -558,6 +552,5 @@ West Resesley
 West Woodbourne
 Westerfield
 Westhorpe
-Weston
 Weton Carr
 Wetton Parton
