@@ -23,6 +23,13 @@ You that auction person?
 Wotcha.
 Eyy up.
 Pip pip.
+Howdy!
+What's up?
+Yo.
+Greetings!
+Greetings, friend.
+Well look who it is!
+Well look what the cat dragged in.
 
 #B (Taste, where 'new' means anything is good)
 I'm looking to buy a <style> house today.
@@ -35,6 +42,11 @@ I'm hoping you'll get me a <style> house today.
 Try and get me a <style> house today, will you?
 Get me a <style> house, yeah?
 I want one of those <style> houses, thanks.
+I want you to get me a <style> house.
+A <style> house would be good, yeah.
+A <style> house would be about right.
+Getting me something <style> sounds good.
+The house has gotta be <style>, yeah?
 
 #C (Speech starter)
 It needs to have
@@ -72,6 +84,10 @@ Plus maybe a
 And how about a
 And it also needs to have a
 And throw in a
+Oh yeah, and a
+As a bonus, give me a
+And if you're feeling nice, get me a
+Oh yeah, gotta have a
 
 #F (Non-essentials, this list needs to be what sprites we have)
 armchair
