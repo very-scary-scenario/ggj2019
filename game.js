@@ -261,7 +261,10 @@ Lot.prototype.draw = function() {
   elements.furniture.innerHTML = '';
   for (var fi = 0; fi < this.furniture.length; fi++) {
     li = document.createElement('li');
-    li.innerText = capFirst(splitCamel(this.furniture[fi].name));
+    li.innerText = capFirst(
+      this.furniture[fi].tags.join(' ').toLowerCase() + ' ' +
+      splitCamel(this.furniture[fi].name)
+    );
     elements.furniture.appendChild(li);
   }
 };
