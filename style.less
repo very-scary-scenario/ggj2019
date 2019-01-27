@@ -38,6 +38,28 @@ button {
 
 #inspection {
   background-color: darken(blue, 20);
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: ' ';
+    width: 100vw;
+    height: 15vw;
+    background-size: 100% auto;
+    background-position: top center;
+    background-image: url('small-art/floorplan_header_1.png');
+    background-position: top center;
+  }
+
+  padding: 8vw 7vw;
+  background-image: url('small-art/floorplan_loopable.png');
+  background-size: contain;
+  background-position: top center;
+  background-repeat: repeat-y;
+  height: 100vh;
 }
 
 #auction-house {
