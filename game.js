@@ -42,6 +42,8 @@ var elements = {
 };
 
 var client;
+var currentLot = 0;
+var totalLots = 4;
 var lot;
 var auction;
 
@@ -77,11 +79,15 @@ function Client() {
 }
 
 function Lot() {
+  currentLot++;
+
   this.address = (Math.floor(Math.pow(Math.random(), 3) * 200) + 1).toString(10) + ' ' + choice(choice(STREET_NAMES_A)) + ' ' + choice(choice(STREET_NAMES_B)) + ', ' + choice(PLACE_NAMES);
   this.draw();
 }
 Lot.prototype.inspect = function() {
   elements.inspection.querySelector('.address').innerText = this.address;
+  elements.inspection.querySelector('.lot-number').innerText = currentLot.toString(10);
+  elements.inspection.querySelector('.total-lots').innerText = totalLots.toString(10);
   elements.auctionHouse.querySelector('.address').innerText = this.address;
 };
 Lot.prototype.draw = function() {
@@ -349,7 +355,18 @@ function doLoop() {
   introduceClient();
 }
 
+function gameShouldContinue() {
+  if (currentLot >= totalLots) {
+    alert('this game is over, we do not yet know how to tell you how well you did');
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function introduceClient() {
+  if (!gameShouldContinue()) return;
+
   client = new Client();
   elements.clientAvatar.setAttribute('src', client.sprite.path);
   elements.auctionHouse.classList.remove('active');
@@ -358,6 +375,8 @@ function introduceClient() {
 }
 
 function doLot() {
+  if (!gameShouldContinue()) return;
+
   // introduce a new lot, and then run the auction
   lot = new Lot();
   lot.inspect();
