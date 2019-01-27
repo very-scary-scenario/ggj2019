@@ -11,6 +11,7 @@ Blue
 Cheeky
 Cheer|Cheery|Cheerful
 Cherry
+Cloverfield
 Cool|Kool
 Cute|Cutey|Cutesy
 Dare|Daring
@@ -28,19 +29,16 @@ Gold|Golden
 Green
 Groove|Groovy
 Happy
-Hello!
 Hyper
 Idol
 Imagine
 Joy|Joyful
 Jumping
 Little|Littlest
-London|Paris|Tokyo
 Love
 Lovely
 Lyrical
 Magic|Magical
-Mahou Shoujo
 Morning
 Musical
 Neo
@@ -57,28 +55,26 @@ Red
 Rose
 Sakura
 Scary
-School|After School
+School
 Sing
 Smile|Smiling
 Soft
 Sparkle|Sparkling
 Special
 Star
+Station
 Super
 Sweet|Sweety
 Team
 The
-This Is
 Triple
-Tokyo Girls'
 Totally
 Ultra
 Vanilla
 Vape|Vapour
 Very
-We Are
 Yes
-
+████████████
 
 B
 
