@@ -25,6 +25,7 @@ var ROOMS = [
 var elements = {
   introduction: document.getElementById('client-introduction'),
   acceptClient: document.getElementById('accept-client'),
+  clientAvatar: document.getElementById('client-avatar'),
   inspection: document.getElementById('inspection'),
   floorPlan: document.getElementById('floorplan'),
   acceptLot: document.getElementById('accept-lot'),
@@ -71,6 +72,7 @@ for (var pi = 0; pi < allParticipants.length; pi++) {
 }
 
 function Client() {
+  this.sprite = choice(CLIENT_SPRITES);
 }
 
 function Lot() {
@@ -332,7 +334,7 @@ function makeAudienceGesticulate() {
 function doLoop() {
   // pre-cache stuff
   var sprite;
-  var cacheableImages = FURNITURE_SPRITES.concat(STEP_SPRITES);
+  var cacheableImages = FURNITURE_SPRITES.concat(STEP_SPRITES).concat(CLIENT_SPRITES);
   for (var si = 0; si < cacheableImages.length; si++) {
     sprite = new Image();
     sprite.src = cacheableImages[si].path;
@@ -344,6 +346,8 @@ function doLoop() {
 }
 
 function introduceClient() {
+  client = new Client();
+  elements.clientAvatar.setAttribute('src', client.sprite.path);
   elements.auctionHouse.classList.remove('active');
   elements.inspection.classList.remove('active');
   elements.introduction.classList.add('active');

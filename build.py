@@ -35,6 +35,14 @@ def build_parts():
             'path': os.path.join('sprites', sprite),
         })
 
+    clients = []
+    client_path = os.path.join('small-art', 'clients')
+    for client in os.listdir(client_path):
+        clients.append({
+            'prefix': os.path.splitext(client)[0],
+            'path': os.path.join(client_path, client),
+        })
+
     steps = []
     for step in os.listdir(os.path.join('floorplan', 'symbols')):
         prefix = os.path.splitext(step)[0]
@@ -52,12 +60,14 @@ def build_parts():
             var PLACE_NAMES = {};
             var FURNITURE_SPRITES = {};
             var STEP_SPRITES = {};
+            var CLIENT_SPRITES = {};
         """.format(
             json.dumps(street_names_a),
             json.dumps(street_names_b),
             json.dumps(place_names),
             json.dumps(sprites),
             json.dumps(steps),
+            json.dumps(clients),
         ))
 
 
