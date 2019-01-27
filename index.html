@@ -21,29 +21,31 @@
     </div>
 
     <div class="mode" id="auction-house">
-      <div id="lot-info">
-        <p class="address">69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
-        <img id="displayed-floor-plan"/>
-      </div>
-
-      <p>you have ⨓ <strong id="wallet">500</strong>
-      <p>you are buying for <strong id="client">yurika toudou</strong>, who <strong>is a vampire</strong></p>
-
-      <div id="auctioneer">
-        <div id="auctioneer-interactions">
-          <p><button id="bid-button">place bid</button></p>
-          <p>current bid: ⨓ <strong id="current-bid">30</strong>, by <strong id="highest-bidder">you</strong>
-          <p id="goings">
-            <span>going…</span>
-            <span>going…</span>
-            <span>gone! sold to <strong id="winning-participant">you</strong></span>
-            &nbsp;
-          </p>
+      <div id="stage">
+        <div id="lot-info">
+          <p class="address">69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
+          <img id="displayed-floor-plan"/>
         </div>
-      </div>
 
-      <ul id="participants">
-      </ul>
+        <p>you have ⨓ <strong id="wallet">500</strong>
+        <p>you are buying for <strong id="client">yurika toudou</strong>, who <strong>is a vampire</strong></p>
+
+        <div id="auctioneer">
+          <div id="auctioneer-interactions">
+            <p><button id="bid-button">place bid</button></p>
+            <p>current bid: ⨓ <strong id="current-bid">30</strong>, by <strong id="highest-bidder">you</strong>
+            <p id="goings">
+              <span>going…</span>
+              <span>going…</span>
+              <span>gone! sold to <strong id="winning-participant">you</strong></span>
+              &nbsp;
+            </p>
+          </div>
+        </div>
+
+        <ul id="participants">
+        </ul>
+      </div>
     </div>
     <script>
       if (!Element.prototype.toggleAttribute) {

@@ -10,9 +10,6 @@ html {
 
 body {
   margin: 0 0;
-  overflow: hidden;
-  width: 100vw;
-  height: 100vh;
 }
 
 * {
@@ -29,7 +26,6 @@ button {
   position: relative;
   margin: 0 auto;
   padding: 1em;
-  height: 100vh;
   width: 100vw;
   display: none;
 
@@ -58,162 +54,174 @@ button {
 
   padding: 8vw 7vw;
   background-image: url('small-art/floorplan_loopable.png');
-  background-size: contain;
+  background-size: 100% auto;
   background-position: top center;
   background-repeat: repeat-y;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #auction-house {
-  background-image: url('small-art/bg.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  max-width: @auction-width;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 
-  #lot-info {
-    background-color: fade(@blueprint, 80);
-    padding: .5em 1em;
-    border: .2em solid white;
-    border-radius: .5em;
-    float: right;
-    max-width: 50%;
-
-    #displayed-floor-plan {
-      max-width: 100%;
-    }
-  }
-
-  #auctioneer {
-    position: absolute;
-    bottom: 15%;
-    height: 80%;
-    width: 70%;
-    background-position: bottom 1.5em center;
-    background-size: auto 80%;
+  #stage {
+    padding: 1em;
+    position: relative;
+    height: 100vh;
+    background-image: url('small-art/bg.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    max-width: @auction-width;
+    margin: 0 auto;
 
-    &[data-gesticulation="1"] { background-image: url('small-art/auctioneer_1/AuctionGuy_1.png'); }
-    &[data-gesticulation="2"] { background-image: url('small-art/auctioneer_1/AuctionGuy_2.png'); }
-    &[data-gesticulation="3"] { background-image: url('small-art/auctioneer_1/AuctionGuy_3.png'); }
-    &[data-gesticulation="4"] { background-image: url('small-art/auctioneer_1/AuctionGuy_4.png'); }
-    &[data-gesticulation="5"] { background-image: url('small-art/auctioneer_1/AuctionGuy_5.png'); }
-    &[data-gesticulation="6"] { background-image: url('small-art/auctioneer_1/AuctionGuy_6.png'); }
-    &[data-gesticulation="7"] { background-image: url('small-art/auctioneer_1/AuctionGuy_7.png'); }
-    &[data-gesticulation="8"] { background-image: url('small-art/auctioneer_1/AuctionGuy_8.png'); }
-    &[data-gesticulation="9"] { background-image: url('small-art/auctioneer_1/AuctionGuy_9.png'); }
-    &[data-gesticulation="10"] { background-image: url('small-art/auctioneer_1/AuctionGuy_10.png'); }
-    &[data-gesticulation="11"] { background-image: url('small-art/auctioneer_1/AuctionGuy_11.png'); }
+    #lot-info {
+      background-color: fade(@blueprint, 80);
+      padding: .5em 1em;
+      border: .2em solid white;
+      border-radius: .5em;
+      float: right;
+      max-width: 50%;
 
-    #auctioneer-interactions {
-      p {
-        margin-top: .5em;
+      #displayed-floor-plan {
+        max-width: 100%;
       }
+    }
 
+    #auctioneer {
+      position: absolute;
+      bottom: 15%;
+      height: 80%;
+      width: 70%;
+      background-position: bottom 1.5em center;
+      background-size: auto 80%;
+      background-repeat: no-repeat;
+
+      &[data-gesticulation="1"] { background-image: url('small-art/auctioneer_1/AuctionGuy_1.png'); }
+      &[data-gesticulation="2"] { background-image: url('small-art/auctioneer_1/AuctionGuy_2.png'); }
+      &[data-gesticulation="3"] { background-image: url('small-art/auctioneer_1/AuctionGuy_3.png'); }
+      &[data-gesticulation="4"] { background-image: url('small-art/auctioneer_1/AuctionGuy_4.png'); }
+      &[data-gesticulation="5"] { background-image: url('small-art/auctioneer_1/AuctionGuy_5.png'); }
+      &[data-gesticulation="6"] { background-image: url('small-art/auctioneer_1/AuctionGuy_6.png'); }
+      &[data-gesticulation="7"] { background-image: url('small-art/auctioneer_1/AuctionGuy_7.png'); }
+      &[data-gesticulation="8"] { background-image: url('small-art/auctioneer_1/AuctionGuy_8.png'); }
+      &[data-gesticulation="9"] { background-image: url('small-art/auctioneer_1/AuctionGuy_9.png'); }
+      &[data-gesticulation="10"] { background-image: url('small-art/auctioneer_1/AuctionGuy_10.png'); }
+      &[data-gesticulation="11"] { background-image: url('small-art/auctioneer_1/AuctionGuy_11.png'); }
+
+      #auctioneer-interactions {
+        p {
+          margin-top: .5em;
+        }
+
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        #bid-button {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    #participants {
       position: absolute;
       bottom: 0;
+      right: 1em;
       width: 100%;
-
-      #bid-button {
-        display: block;
-        margin: 0 auto;
-      }
-    }
-  }
-
-  #participants {
-    position: absolute;
-    bottom: 0;
-    right: 1em;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    text-align: right;
-    color: rgba(0, 0, 0, 0);
-
-    > li {
-      display: inline-block;
-      margin: 0 -5%;
-      width: 25%;
       height: 100%;
+      pointer-events: none;
+      text-align: right;
+      color: rgba(0, 0, 0, 0);
 
-      transform-origin: bottom;
-      transition: transform .5s;
-      transform: scale(1.0);
+      > li {
+        display: inline-block;
+        margin: 0 -5%;
+        width: 25%;
+        height: 100%;
 
-      &.winning {
-        transform: scale(1.2);
+        transform-origin: bottom;
+        transition: transform .5s;
+        transform: scale(1.0);
+
+        &.winning {
+          transform: scale(1.2);
+        }
+
+        &:nth-child(2) {
+          background-image: url('small-art/Opponents/opp_1_1.png');
+          &.winning { background-image: url('small-art/Opponents/opp_1_2.png') !important; }
+          &.won { background-image: url('small-art/Opponents/opp_1_3.png') !important; }
+
+          &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_1_4.png') }
+          &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_1_5.png') }
+          &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_1_6.png') }
+        }
+        &:nth-child(3) {
+          background-image: url('small-art/Opponents/opp_2_1.png');
+          &.winning { background-image: url('small-art/Opponents/opp_2_2.png') !important; }
+          &.won { background-image: url('small-art/Opponents/opp_2_3.png') !important; }
+
+          &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_2_4.png') }
+          &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_2_5.png') }
+          &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_2_6.png') }
+        }
+        &:nth-child(4) {
+          background-image: url('small-art/Opponents/opp_3_1.png');
+          &.winning { background-image: url('small-art/Opponents/opp_3_2.png') !important; }
+          &.won { background-image: url('small-art/Opponents/opp_3_3.png') !important; }
+
+          &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_3_4.png') }
+          &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_3_5.png') }
+          &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_3_6.png') }
+        }
+        &:nth-child(5) {
+          background-image: url('small-art/Opponents/opp_4_1.png');
+          &.winning { background-image: url('small-art/Opponents/opp_4_2.png') !important; }
+          &.won { background-image: url('small-art/Opponents/opp_4_3.png') !important; }
+
+          &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_4_4.png') }
+          &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_4_5.png') }
+          &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_4_6.png') }
+        }
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom center;
       }
-
-      &:nth-child(2) {
-        background-image: url('small-art/Opponents/opp_1_1.png');
-        &.winning { background-image: url('small-art/Opponents/opp_1_2.png') !important; }
-        &.won { background-image: url('small-art/Opponents/opp_1_3.png') !important; }
-
-        &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_1_4.png') }
-        &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_1_5.png') }
-        &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_1_6.png') }
-      }
-      &:nth-child(3) {
-        background-image: url('small-art/Opponents/opp_2_1.png');
-        &.winning { background-image: url('small-art/Opponents/opp_2_2.png') !important; }
-        &.won { background-image: url('small-art/Opponents/opp_2_3.png') !important; }
-
-        &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_2_4.png') }
-        &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_2_5.png') }
-        &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_2_6.png') }
-      }
-      &:nth-child(4) {
-        background-image: url('small-art/Opponents/opp_3_1.png');
-        &.winning { background-image: url('small-art/Opponents/opp_3_2.png') !important; }
-        &.won { background-image: url('small-art/Opponents/opp_3_3.png') !important; }
-
-        &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_3_4.png') }
-        &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_3_5.png') }
-        &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_3_6.png') }
-      }
-      &:nth-child(5) {
-        background-image: url('small-art/Opponents/opp_4_1.png');
-        &.winning { background-image: url('small-art/Opponents/opp_4_2.png') !important; }
-        &.won { background-image: url('small-art/Opponents/opp_4_3.png') !important; }
-
-        &[data-gesticulation="4"] { background-image: url('small-art/Opponents/opp_4_4.png') }
-        &[data-gesticulation="5"] { background-image: url('small-art/Opponents/opp_4_5.png') }
-        &[data-gesticulation="6"] { background-image: url('small-art/Opponents/opp_4_6.png') }
-      }
-
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: bottom center;
     }
-  }
 
-  #goings span {
-    display: none;
-  }
+    #goings span {
+      display: none;
+    }
 
-  #goings span.shown {
-    display: inline;
-  }
+    #goings span.shown {
+      display: inline;
+    }
 
-  &::before, &::after {
-    position: absolute;
-    top: 0;
-    content: ' ';
-    height: 100vh;
-    width: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  &::before {
-    right: @auction-width - .5em;
-    background-image: url('small-art/curtains_left.png');
-    background-position: right;
-  }
-  &::after {
-    left: @auction-width - .5em;
-    background-image: url('small-art/curtains_right.png');
-    background-position: left;
+    &::before, &::after {
+      position: absolute;
+      top: 0;
+      content: ' ';
+      height: 100vh;
+      width: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &::before {
+      right: @auction-width - .5em;
+      background-image: url('small-art/curtains_left.png');
+      background-position: right;
+    }
+    &::after {
+      left: @auction-width - .5em;
+      background-image: url('small-art/curtains_right.png');
+      background-position: left;
+    }
   }
 }
 
