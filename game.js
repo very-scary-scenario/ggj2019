@@ -132,6 +132,9 @@ function Client() {
     this.preferences.push(chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(itemName) + '.');
   }
 }
+Client.prototype.affinityFor = function(lot) {
+  return Math.random();
+};
 
 function Lot() {
   currentLot++;
@@ -140,6 +143,8 @@ function Lot() {
   this.furniture = [];
   this.rooms = [];
   this.draw();
+
+  document.getElementById('match-rate').innerText = client.affinityFor(this).toString(10);
 }
 Lot.prototype.inspect = function() {
   elements.inspection.querySelector('.address').innerText = this.address;
