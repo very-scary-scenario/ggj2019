@@ -245,6 +245,10 @@ Lot.prototype.draw = function() {
     ctx.fillRect(locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
   }}
 
+  while (this.rooms.length < 2 + Math.floor(Math.random() * 4)) {
+    this.rooms.push(choice(ROOMS));
+  }
+
   this.floorPlan = elements.floorPlanCanvas.toDataURL();
   elements.floorPlan.src = this.floorPlan;
   elements.displayedFloorPlan.src = this.floorPlan;
