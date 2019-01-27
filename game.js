@@ -71,7 +71,7 @@ var elements = {
 
 var client;
 var currentLot = 0;
-var totalLots = 4;
+var totalLots = 10;
 var lot;
 var auction;
 var satisfactions = [];
