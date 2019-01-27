@@ -79,8 +79,6 @@ var satisfactions = [];
 function getAuctionSummary() {
   var summary = 'the auction is over. you bought houses for ' + satisfactions.length.toString(10) + ' clients. their average satisfaction was ' + ((satisfactions.reduce(function(total, num) { return total + num; }) / satisfactions.length) * 100).toFixed(0) + '%.';
 
-  satisfactions = [];
-
   return summary;
 }
 function choice(list) {
