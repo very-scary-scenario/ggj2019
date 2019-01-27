@@ -34,8 +34,7 @@ button {
   }
 }
 
-#inspection {
-  background-color: @blueprint;
+#inspection, #client-introduction {
   position: relative;
 
   &::before {
@@ -48,16 +47,54 @@ button {
     height: 15vw;
     background-size: 100% auto;
     background-position: top center;
-    background-image: url('small-art/floorplan_header_1.png');
     background-position: top center;
   }
 
-  padding: 8vw 7vw;
-  background-image: url('small-art/floorplan_loopable.png');
   background-size: 100% auto;
   background-position: top center;
   background-repeat: repeat-y;
   min-height: 100vh;
+}
+
+#client-introduction {
+  font-size: .8em;
+  background-color: white;
+  color: black;
+
+  background-image: url('small-art/client_bg_loop.png');
+  &::before {
+    background-image: url('small-art/client_bg_head.png');
+    height: 10vw;
+  }
+  padding: 15vw 2vw 0 12vw;
+
+  #client-avatar {
+    background-color: fade(black, 10);
+    float: right;
+    transform: rotate(-5deg) scale(0.85);
+    box-shadow: 0 .2em .3em fade(black, 30);
+    border-radius: .5em;
+    max-width: 30vw;
+    width: 20em;
+  }
+
+  p {
+    margin: .5em 0;
+  }
+
+  #client-preferences {
+    border-left: .1em dashed fade(black, 50);
+    font-style: italic;
+    padding: 0 .5em;
+    margin: 1em 0;
+  }
+}
+
+#inspection {
+  background-color: @blueprint;
+  background-image: url('small-art/floorplan_loopable.png');
+  &::before { background-image: url('small-art/floorplan_header_1.png'); }
+  padding: 8vw 7vw;
 }
 
 #auction-house {
