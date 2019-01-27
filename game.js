@@ -12,6 +12,15 @@ var REQUIRED_ROOM_WEIGHT = 40/100;
 var FURNITURE_WEIGHT = 30/100;
 var STYLES_WEIGHT = 30/100;
 
+var HOUSE_PRICES = [
+  200,
+  300,
+  500,
+  1000,
+  5000,
+  10000,
+];
+
 var STYLES = [
   'cute',
   'cool',
@@ -39,6 +48,7 @@ var elements = {
   introduction: document.getElementById('client-introduction'),
   acceptClient: document.getElementById('accept-client'),
   clientAvatar: document.getElementById('client-avatar'),
+  clientBudget: document.getElementById('client-budget'),
   clientStory: document.getElementById('client-story'),
   clientPreferences: document.getElementById('client-preferences'),
   inspection: document.getElementById('inspection'),
@@ -50,7 +60,6 @@ var elements = {
   auctionHouse: document.getElementById('auction-house'),
   displayedFloorPlan: document.getElementById('displayed-floor-plan'),
   auctioneer: document.getElementById('auctioneer'),
-  wallet: document.getElementById('wallet'),
   currentBid: document.getElementById('current-bid'),
   highestBidder: document.getElementById('highest-bidder'),
   winningBidder: document.getElementById('winning-participant'),
@@ -72,7 +81,7 @@ function choice(list) {
 function Participant(name, isPlayer) {
   this.name = name;
   this.isPlayer = Boolean(isPlayer);
-  this.funds = 500;
+  this.funds = 10000;
 }
 
 var enemyParticipants = [
@@ -112,6 +121,8 @@ function capFirst(string) {
 }
 
 function Client() {
+  this.budget = choice(HOUSE_PRICES)/2;
+  elements.clientBudget.innerText = this.budget.toString(10);
   this.sprite = choice(CLIENT_SPRITES);
   this.story = [
     chooseSentence(CLIENT_STORIES.A),
@@ -164,6 +175,21 @@ Client.prototype.affinityFor = function(lot) {
   score += furnitureScore * FURNITURE_WEIGHT;
 
   return score;
+};
+Client.prototype.priceCompatibility = function(price) {
+  var negativeWeighting = -1;
+  var positiveWeighting = 0.1;
+  var underBudgetRatio = (this.budget - price) / this.budget;
+  var weight;
+  if (underBudgetRatio > 0) {
+    weight = positiveWeighting;
+  } else {
+    weight = negativeWeighting;
+  }
+  return Math.max((1 - (weight * underBudgetRatio)), 0);
+};
+Client.prototype.satisfactionWith = function(lot, price) {
+  return this.affinityFor(lot) * this.priceCompatibility(price);
 };
 
 function Lot() {
@@ -321,7 +347,7 @@ Lot.prototype.draw = function() {
 
 function Auction() {
   this.currentBid = 10;
-  this.appraisal = 500;
+  this.appraisal = choice(HOUSE_PRICES);
   this.winningParticipant = null;
   this.goingLevel = 0;
 
@@ -374,7 +400,6 @@ Auction.prototype.setNextAction = function() {
 Auction.prototype.update = function() {
   var self = this;
 
-  elements.wallet.innerText = playerParticipant.funds.toString(10);
   elements.currentBid.innerText = this.currentBid.toString(10);
 
   for (var pi = 0; pi < allParticipants.length; pi++) {
@@ -413,7 +438,7 @@ Auction.prototype.update = function() {
 
     if (this.winningParticipant === playerParticipant) {
       setTimeout(function() {
-        alert('you won this house!');
+        alert('you won this house! the client\'s satisfaction was ' + client.satisfactionWith(lot, self.currentBid).toString(10));
         introduceClient();
       }, GOING_STEP_LENGTH);
     } else {
