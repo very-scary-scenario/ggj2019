@@ -407,7 +407,6 @@ Auction.prototype.setNextAction = function() {
       (GOING_STEP_LENGTH / 4)
     ));
   } else {
-    console.log('not bidding');
 
     this.nextAction = setTimeout(function() {
       if (self.winningParticipant !== null) self.goingLevel += 1;
@@ -516,7 +515,25 @@ function doLoop() {
     document.getElementById('image-cache').appendChild(sprite);
   }
 
-  introduceClient();
+  var images = document.getElementById('image-cache').querySelectorAll('img');
+  var imagesLoaded = 0;
+  function handleLoadedImage() {
+    imagesLoaded++;
+    if (imagesLoaded === images.length) {
+      setTimeout(function() {
+        document.body.classList.remove('loading');
+        introduceClient();
+      }, 500);  // just to show the logo off
+    }
+  }
+  for (var ii = 0; ii < images.length; ii++) {
+    if (images[ii].complete) {
+      handleLoadedImage();
+    } else {
+      images[ii].addEventListener('load', handleLoadedImage);
+      images[ii].addEventListener('error', handleLoadedImage);
+    }
+  }
 }
 
 function gameShouldContinue() {
