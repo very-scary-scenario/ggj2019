@@ -29,7 +29,10 @@ var elements = {
   clientStory: document.getElementById('client-story'),
   clientPreferences: document.getElementById('client-preferences'),
   inspection: document.getElementById('inspection'),
+  floorPlanCanvas: document.getElementById('floorplan-canvas'),
   floorPlan: document.getElementById('floorplan'),
+  rooms: document.getElementById('rooms'),
+  furniture: document.getElementById('furniture'),
   acceptLot: document.getElementById('accept-lot'),
   auctionHouse: document.getElementById('auction-house'),
   displayedFloorPlan: document.getElementById('displayed-floor-plan'),
@@ -88,7 +91,11 @@ function chooseSentence(options) {
 function splitCamel(camelCasePhrase) {
   return camelCasePhrase.replace(/([A-Z])/g, function(m) {
     return ' ' + m.toLowerCase();
-  });
+  }).trim();
+}
+
+function capFirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function Client() {
@@ -130,8 +137,8 @@ Lot.prototype.inspect = function() {
   elements.auctionHouse.querySelector('.address').innerText = this.address;
 };
 Lot.prototype.draw = function() {
-  var ctx = elements.floorPlan.getContext('2d');
-  ctx.clearRect(0, 0, elements.floorPlan.width, elements.floorPlan.height);
+  var ctx = elements.floorPlanCanvas.getContext('2d');
+  ctx.clearRect(0, 0, elements.floorPlanCanvas.width, elements.floorPlanCanvas.height);
   ctx.font = (ROOM_WALL_WIDTH * 2).toString(10) + 'px sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -238,8 +245,25 @@ Lot.prototype.draw = function() {
     ctx.fillRect(locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
   }}
 
-  this.floorPlan = elements.floorPlan.toDataURL();
+  this.floorPlan = elements.floorPlanCanvas.toDataURL();
+  elements.floorPlan.src = this.floorPlan;
   elements.displayedFloorPlan.src = this.floorPlan;
+
+  var li;
+
+  elements.rooms.innerHTML = '';
+  for (var ri = 0; ri < this.rooms.length; ri++) {
+    li = document.createElement('li');
+    li.innerText = this.rooms[ri];
+    elements.rooms.appendChild(li);
+  }
+
+  elements.furniture.innerHTML = '';
+  for (var fi = 0; fi < this.furniture.length; fi++) {
+    li = document.createElement('li');
+    li.innerText = capFirst(splitCamel(this.furniture[fi].name));
+    elements.furniture.appendChild(li);
+  }
 };
 
 function Auction() {

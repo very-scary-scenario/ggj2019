@@ -18,7 +18,11 @@
     <div class="mode" id="inspection">
       <h1>Lot <strong class="lot-number">4</strong> of <strong class="total-lots">12</strong></h1>
       <p class="address">69 dick lane, tiddlington-on-the-cream, brushinghamshire</p>
-      <canvas id="floorplan" width="1200" height="1200" style="width: 600px; height: 600px;"></canvas>
+      <img id="floorplan"/>
+      <p>Features:</p>
+      <ul id="rooms"></ul>
+      <p>Comes furnished with:</p>
+      <ul id="furniture"></ul>
       <p><button id="accept-lot">Start auction</button></p>
     </div>
 
@@ -70,6 +74,7 @@
     </script>
 
     <div id="image-cache">
+      <canvas id="floorplan-canvas" width="1200" height="1200"></canvas>
       <img id="floorplan-door-n" src="floorplan/symbols/door_nowall_n.png"/>
       <img id="floorplan-door-e" src="floorplan/symbols/door_nowall_e.png"/>
       <img id="floorplan-door-s" src="floorplan/symbols/door_nowall_s.png"/>
