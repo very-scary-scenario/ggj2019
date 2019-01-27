@@ -50,6 +50,8 @@ var elements = {
   clientAvatar: document.getElementById('client-avatar'),
   clientName: document.getElementById('client-name'),
   clientBudget: document.getElementById('client-budget'),
+  clientMetaBudget: document.getElementById('client-meta-budget'),
+  clientMetaDesires: document.getElementById('client-meta-desires'),
   clientStory: document.getElementById('client-story'),
   clientPreferences: document.getElementById('client-preferences'),
   inspection: document.getElementById('inspection'),
@@ -130,6 +132,8 @@ function capFirst(string) {
 function Client() {
   this.budget = choice(HOUSE_PRICES)/2;
   elements.clientBudget.innerText = this.budget.toString(10);
+  elements.clientMetaDesires.innerHTML = '';
+  elements.clientMetaBudget.innerText = this.budget.toString(10);
   this.sprite = choice(CLIENT_SPRITES);
   this.story = [
     chooseSentence(CLIENT_STORIES.A),
@@ -142,6 +146,10 @@ function Client() {
   this.desiredStyle = choice(STYLE_OPTIONS);
 
   this.desiredRoom = choice(ROOMS);
+  var li = document.createElement('li');
+  li.innerText = this.desiredRoom;
+  elements.clientMetaDesires.appendChild(li);
+
   this.preferences = [
     chooseSentence(CLIENT_PREFERENCES.A),
     chooseSentence(CLIENT_PREFERENCES.B).replace('<style>', this.desiredStyle),
@@ -152,6 +160,9 @@ function Client() {
   var itemName;
   for (var i = 2; i > 0; i--) {
     itemName = choice(FURNITURE_SPRITES).name;
+    li = document.createElement('li');
+    li.innerText = capFirst(splitCamel(itemName));
+    elements.clientMetaDesires.appendChild(li);
     this.desiredItems.push(itemName);
     this.preferences.push(chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(itemName) + '.');
   }
