@@ -25,16 +25,16 @@ Eyy up.
 Pip pip.
 
 #B (Taste, where 'new' means anything is good)
-I'm looking to buy a (cute|cool|stylish|weird|new) house today.
-So I'm after a (cute|cool|stylish|weird|new) house. 
-I kinda want to get a (cute|cool|stylish|weird|new) house.
-Could you help get me a (cute|cool|stylish|weird|new) house?
-Let's try and win a (cute|cool|stylish|weird|new) house.
-I wanna get a (cute|cool|stylish|weird|new) house, ideally.
-I'm hoping you'll get me a (cute|cool|stylish|weird|new) house today.
-Try and get me a (cute|cool|stylish|weird|new) house today, will you?
-Get me a (cute|cool|stylish|weird|new) house, yeah?
-I want one of those (cute|cool|stylish|weird|new) houses, thanks.
+I'm looking to buy a <style> house today.
+So I'm after a <style> house. 
+I kinda want to get a <style> house.
+Could you help get me a <style> house?
+Let's try and win a <style> house.
+I wanna get a <style> house, ideally.
+I'm hoping you'll get me a <style> house today.
+Try and get me a <style> house today, will you?
+Get me a <style> house, yeah?
+I want one of those <style> houses, thanks.
 
 #C (Speech starter)
 It needs to have

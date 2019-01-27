@@ -8,6 +8,15 @@ var DOOR_SIZE = ROOM_WALL_LENGTH/4;
 var STEPS_SIZE = ROOM_WALL_LENGTH*0.8;
 var SPRITE_SIZE = 128;
 
+var STYLES = [
+  'cute',
+  'cool',
+  'stylish',
+  'weird',
+];
+var ANY_STYLE = 'new';
+var STYLE_OPTIONS = STYLES.concat([ANY_STYLE]);
+
 var ROOMS = [
   'Toilet',
   'Bedroom',
@@ -106,10 +115,12 @@ function Client() {
     chooseSentence(CLIENT_STORIES.B),
   ];
 
+  this.desiredStyle = choice(STYLE_OPTIONS);
+
   this.desiredRoom = choice(ROOMS);
   this.preferences = [
     chooseSentence(CLIENT_PREFERENCES.A),
-    chooseSentence(CLIENT_PREFERENCES.B),
+    chooseSentence(CLIENT_PREFERENCES.B).replace('<style>', this.desiredStyle),
     chooseSentence(CLIENT_PREFERENCES.C) + ' a ' + this.desiredRoom.toLowerCase() + '.',
   ];
 
