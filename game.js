@@ -30,6 +30,7 @@ var elements = {
   floorPlan: document.getElementById('floorplan'),
   acceptLot: document.getElementById('accept-lot'),
   auctionHouse: document.getElementById('auction-house'),
+  displayedFloorPlan: document.getElementById('displayed-floor-plan'),
   auctioneer: document.getElementById('auctioneer'),
   wallet: document.getElementById('wallet'),
   currentBid: document.getElementById('current-bid'),
@@ -188,6 +189,9 @@ Lot.prototype.draw = function() {
 
     ctx.fillRect(locForCoordinate(x), locForCoordinate(y), sizeForCoordinate(x), sizeForCoordinate(y));
   }}
+
+  this.floorPlan = elements.floorPlan.toDataURL();
+  elements.displayedFloorPlan.src = this.floorPlan;
 };
 
 function Auction() {
