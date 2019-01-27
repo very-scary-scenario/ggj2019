@@ -11,6 +11,7 @@ Blue
 Cheeky
 Cheer|Cheery|Cheerful
 Cherry
+Cloverfield
 Cool|Kool
 Cute|Cutey|Cutesy
 Dare|Daring
@@ -61,6 +62,7 @@ Soft
 Sparkle|Sparkling
 Special
 Star
+Station
 Super
 Sweet|Sweety
 Team
@@ -72,6 +74,7 @@ Vanilla
 Vape|Vapour
 Very
 Yes
+████████████
 
 B
 
