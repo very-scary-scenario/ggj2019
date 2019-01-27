@@ -95,6 +95,7 @@ def build_parts():
 
     life_stories = parse_sectioned_file('CustomerLifeStories.txt')
     preferences = parse_sectioned_file('CustomerPreferences.txt')
+    names = parse_sectioned_file('ClientNames.txt')
 
     with open('parts.js', 'w') as pf:
         pf.write("""
@@ -106,6 +107,7 @@ def build_parts():
             var CLIENT_SPRITES = {};
             var CLIENT_STORIES = {};
             var CLIENT_PREFERENCES = {};
+            var NAMES = {};
         """.format(
             json.dumps(street_names_a),
             json.dumps(street_names_b),
@@ -115,6 +117,7 @@ def build_parts():
             json.dumps(clients),
             json.dumps(life_stories),
             json.dumps(preferences),
+            json.dumps(names),
         ))
 
 

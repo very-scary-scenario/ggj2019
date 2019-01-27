@@ -48,6 +48,7 @@ var elements = {
   introduction: document.getElementById('client-introduction'),
   acceptClient: document.getElementById('accept-client'),
   clientAvatar: document.getElementById('client-avatar'),
+  clientName: document.getElementById('client-name'),
   clientBudget: document.getElementById('client-budget'),
   clientStory: document.getElementById('client-story'),
   clientPreferences: document.getElementById('client-preferences'),
@@ -137,6 +138,8 @@ function Client() {
     chooseSentence(CLIENT_STORIES.A),
     chooseSentence(CLIENT_STORIES.B),
   ];
+  this.name = chooseSentence(NAMES.A) + ' ' + chooseSentence(NAMES.B);
+  elements.clientName.innerText = this.name;
 
   this.desiredStyle = choice(STYLE_OPTIONS);
 
