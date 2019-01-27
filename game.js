@@ -73,7 +73,15 @@ var currentLot = 0;
 var totalLots = 4;
 var lot;
 var auction;
+var satisfactions = [];
 
+function getAuctionSummary() {
+  var summary = 'the auction is over. you bought houses for ' + satisfactions.length.toString(10) + ' clients. their average satisfaction was ' + ((satisfactions.reduce(function(total, num) { return total + num; }) / satisfactions.length) * 100).toFixed(0) + '%.';
+
+  satisfactions = [];
+
+  return summary;
+}
 function choice(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
@@ -199,8 +207,6 @@ function Lot() {
   this.furniture = [];
   this.rooms = [];
   this.draw();
-
-  document.getElementById('match-rate').innerText = client.affinityFor(this).toString(10);
 }
 Lot.prototype.inspect = function() {
   elements.inspection.querySelector('.address').innerText = this.address;
@@ -438,7 +444,9 @@ Auction.prototype.update = function() {
 
     if (this.winningParticipant === playerParticipant) {
       setTimeout(function() {
-        alert('you won this house! the client\'s satisfaction was ' + client.satisfactionWith(lot, self.currentBid).toString(10));
+        var satisfaction = client.satisfactionWith(lot, self.currentBid);
+        satisfactions.push(satisfaction);
+        alert('you won this house! the client\'s satisfaction was ' + (satisfaction * 100).toFixed(0) + '%');
         introduceClient();
       }, GOING_STEP_LENGTH);
     } else {
@@ -501,7 +509,7 @@ function doLoop() {
 
 function gameShouldContinue() {
   if (currentLot >= totalLots) {
-    alert('this game is over, we do not yet know how to tell you how well you did');
+    alert(getAuctionSummary());
     return false;
   } else {
     return true;
