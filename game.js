@@ -8,6 +8,10 @@ var DOOR_SIZE = ROOM_WALL_LENGTH/4;
 var STEPS_SIZE = ROOM_WALL_LENGTH*0.8;
 var SPRITE_SIZE = 128;
 
+var REQUIRED_ROOM_WEIGHT = 40/100;
+var FURNITURE_WEIGHT = 30/100;
+var STYLES_WEIGHT = 30/100;
+
 var STYLES = [
   'cute',
   'cool',
@@ -133,7 +137,33 @@ function Client() {
   }
 }
 Client.prototype.affinityFor = function(lot) {
-  return Math.random();
+  score = 0;
+
+  if (lot.rooms.indexOf(this.desiredRoom) !== -1) {
+    score += REQUIRED_ROOM_WEIGHT;
+  }
+
+  var tagScore = 0;
+  var furnitureScore = 0;
+  var item;
+  for (var fi = 0; fi < lot.furniture.length; fi++) {
+    if (
+      (lot.furniture[fi].tags.indexOf(this.desiredStyle) !== -1) ||
+      (this.desiredStyle === ANY_STYLE)
+    ) {
+      tagScore += 1;
+    }
+
+    if (this.desiredItems.indexOf(lot.furniture[fi].name) !== -1) {
+      furnitureScore += (1 / this.desiredItems.length);
+    }
+  }
+
+  tagScore = (tagScore / lot.furniture.length) * STYLES_WEIGHT;
+  score += tagScore;
+  score += furnitureScore * FURNITURE_WEIGHT;
+
+  return score;
 };
 
 function Lot() {
@@ -282,7 +312,7 @@ Lot.prototype.draw = function() {
   for (var fi = 0; fi < this.furniture.length; fi++) {
     li = document.createElement('li');
     li.innerText = capFirst(
-      this.furniture[fi].tags.join(' ').toLowerCase() + ' ' +
+      this.furniture[fi].tags.join(' ') + ' ' +
       splitCamel(this.furniture[fi].name)
     );
     elements.furniture.appendChild(li);

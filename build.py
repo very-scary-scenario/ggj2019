@@ -71,7 +71,7 @@ def build_parts():
         sprites.append({
             'prefix': prefix,
             'name': name,
-            'tags': list(reversed(tags)),
+            'tags': [t.lower() for t in reversed(tags)],
             'path': os.path.join('sprites', sprite),
         })
 
