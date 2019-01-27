@@ -98,19 +98,29 @@ function Client() {
     chooseSentence(CLIENT_STORIES.A),
     chooseSentence(CLIENT_STORIES.B),
   ];
+
+  this.desiredRoom = choice(ROOMS);
   this.preferences = [
     chooseSentence(CLIENT_PREFERENCES.A),
     chooseSentence(CLIENT_PREFERENCES.B),
-    chooseSentence(CLIENT_PREFERENCES.C) + ' a ' + choice(ROOMS).toLowerCase() + '.',
-    chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(choice(FURNITURE_SPRITES).name) + '.',
-    chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(choice(FURNITURE_SPRITES).name) + '.',
+    chooseSentence(CLIENT_PREFERENCES.C) + ' a ' + this.desiredRoom.toLowerCase() + '.',
   ];
+
+  this.desiredItems = [];
+  var itemName;
+  for (var i = 2; i > 0; i--) {
+    itemName = choice(FURNITURE_SPRITES).name;
+    this.desiredItems.push(itemName);
+    this.preferences.push(chooseSentence(CLIENT_PREFERENCES.E) + ' ' + splitCamel(itemName) + '.');
+  }
 }
 
 function Lot() {
   currentLot++;
 
   this.address = (Math.floor(Math.pow(Math.random(), 3) * 200) + 1).toString(10) + ' ' + choice(choice(STREET_NAMES_A)) + ' ' + choice(choice(STREET_NAMES_B)) + ', ' + choice(PLACE_NAMES);
+  this.furniture = [];
+  this.rooms = [];
   this.draw();
 }
 Lot.prototype.inspect = function() {
@@ -158,6 +168,7 @@ Lot.prototype.draw = function() {
       while (Math.random() < itemNeed) {
         itemNeed = itemNeed/2;
         sprite = choice(FURNITURE_SPRITES);
+        this.furniture.push(sprite);
         var spriteX = locForCoordinate(x);
         var spriteY = locForCoordinate(y);
 
@@ -177,7 +188,9 @@ Lot.prototype.draw = function() {
 
       // should we give it a name?
       if (Math.random() < 0.25) {
-        ctx.fillText(choice(ROOMS), locForCoordinate(x) + ROOM_WALL_LENGTH / 2, locForCoordinate(y) + ROOM_WALL_LENGTH / 2);
+        var roomName = choice(ROOMS);
+        this.rooms.push(roomName);
+        ctx.fillText(roomName, locForCoordinate(x) + ROOM_WALL_LENGTH / 2, locForCoordinate(y) + ROOM_WALL_LENGTH / 2);
       }
 
       continue;
@@ -402,6 +415,7 @@ function introduceClient() {
   elements.inspection.classList.remove('active');
   elements.introduction.classList.add('active');
 
+  elements.clientStory.innerHTML = '';
   var p;
   for (var si = 0; si < client.story.length; si++) {
     p = document.createElement('p');
@@ -409,6 +423,7 @@ function introduceClient() {
     elements.clientStory.appendChild(p);
   }
 
+  elements.clientPreferences.innerHTML = '';
   for (var pi = 0; pi < client.preferences.length; pi++) {
     p = document.createElement('p');
     p.innerText = client.preferences[pi];
